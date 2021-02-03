@@ -40,7 +40,7 @@ if (isset($_POST['searchQuery'])) {
                             <button class="btn-search">Cari</button>
                         </form>
                     </div>
-                    <button> <span>Tambah Barang</span> <i class="material-icons"> add_box </i></button>
+                    <button onclick="openModal('modal-addBarang')"> <span>Tambah Barang</span> <i class="material-icons"> add_box </i></button>
                 </div>
                 <!-- Gudang Table -->
                 <div class="table">
@@ -78,6 +78,7 @@ if (isset($_POST['searchQuery'])) {
     </div>
 
     <!-- Modal -->
+    <script src="assets/js/modal.js"></script>
     <div class="modal">
         <!-- Add Employee -->
         <div id="modal-addBarang" class="addBarang modal-container">
@@ -97,7 +98,7 @@ if (isset($_POST['searchQuery'])) {
                 <br>
                 <button class="btn-ok">Submit</button>
             </form>
-            <button class="btn-no">Batal</button>
+            <button class="btn-no" onclick="closeModal('modal-addBarang')">Batal</button>
         </div>
 
         <!-- Edit Employee -->
@@ -118,17 +119,17 @@ if (isset($_POST['searchQuery'])) {
                 <br>
                 <button class="btn-ok">Submit</button>
             </form>
-            <button class="btn-no">Batal</button>
+            <button class="btn-no" onclick="closeModal('modal-editBarang')">Batal</button>
         </div>
 
         <!-- Delete Employee -->
-        <div id="modal-deleteBarang" class="deleteBarang modal-container">
+        <div id=" modal-deleteBarang" class="deleteBarang modal-container">
             <span>Hapus Data Barang?</span>
             <form>
                 <label>Apa anda yakin ingin menghapus data barang?</label>
                 <button class="btn-no">Hapus</button>
             </form>
-            <button class="btn-ok">Batal</button>
+            <button class="btn-ok" onclick="closeModal('modal-deleteBarang')">Batal</button>
         </div>
 
         <!-- Salary Employee -->
@@ -143,7 +144,7 @@ if (isset($_POST['searchQuery'])) {
                 <br>
                 <button class="btn-ok">Submit</button>
             </form>
-            <button class="btn-no">Batal</button>
+            <button class="btn-no" onclick="closeModal('modal-requestStock')">Batal</button>
         </div>
     </div>
 </body>

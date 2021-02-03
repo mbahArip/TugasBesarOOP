@@ -18,6 +18,17 @@ function openEdit(modalID, buttonID, tableID, areaID, i) {
     document.getElementById(areaID).innerHTML = table.rows[index].cells[i].innerHTML;
     document.getElementById('edit-notesID').value = table.rows[index].cells[0].innerHTML;
 }
+function openDelete(modalID, buttonID, tableID) {
+    var modalContainer = document.querySelector('.modal');
+    var modal = document.getElementById(modalID);
+    var table = document.getElementById(tableID);
+
+    modalContainer.style.display = 'flex';
+    modal.style.display = 'flex';
+
+    var index = buttonID.parentNode.parentNode.rowIndex;
+    document.getElementById('delete-notesID').value = table.rows[index].cells[0].innerHTML;
+}
 
 function employeeEdit(modalID, buttonID, tableID) {
     var modalContainer = document.querySelector('.modal');
@@ -67,17 +78,6 @@ function employeeSalary(modalID, buttonID, tableID) {
     document.getElementById('salary-number').value = table.rows[index].cells[6].innerHTML.substring(4); 
 }
 
-function openDelete(modalID, buttonID, tableID) {
-    var modalContainer = document.querySelector('.modal');
-    var modal = document.getElementById(modalID);
-    var table = document.getElementById(tableID);
-
-    modalContainer.style.display = 'flex';
-    modal.style.display = 'flex';
-
-    var index = buttonID.parentNode.parentNode.rowIndex;
-    document.getElementById('delete-notesID').value = table.rows[index].cells[0].innerHTML;
-}
 
 function closeModal(modalID) {
     var modal = document.getElementById(modalID);
