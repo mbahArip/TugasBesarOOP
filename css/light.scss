@@ -45,6 +45,14 @@ body {
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: 'liga';
 }
+.disabled {
+    opacity: 0.5 !important;
+    cursor: default !important;
+
+    &:hover {
+        color: $col-text;
+    }
+}
 
 
 //Loading

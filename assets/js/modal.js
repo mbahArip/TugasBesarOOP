@@ -78,6 +78,44 @@ function employeeSalary(modalID, buttonID, tableID) {
     document.getElementById('salary-number').value = table.rows[index].cells[6].innerHTML.substring(4); 
 }
 
+function barangEdit(modalID, buttonID, tableID) {
+    var modalContainer = document.querySelector('.modal');
+    var modal = document.getElementById(modalID);
+    var table = document.getElementById(tableID);
+
+    modalContainer.style.display = 'flex';
+    modal.style.display = 'flex';
+
+    var index = buttonID.parentNode.parentNode.rowIndex;
+    document.getElementById('edit-id').value = table.rows[index].cells[0].innerHTML;
+    document.getElementById('edit-nama').value = table.rows[index].cells[1].innerHTML;
+    document.getElementById('edit-harga').value = table.rows[index].cells[2].innerHTML;
+    document.getElementById('edit-stok').value = table.rows[index].cells[3].innerHTML;
+}
+function barangDelete(modalID, buttonID, tableID){
+    var modalContainer = document.querySelector('.modal');
+    var modal = document.getElementById(modalID);
+    var table = document.getElementById(tableID);
+
+    modalContainer.style.display = 'flex';
+    modal.style.display = 'flex';
+
+    var index = buttonID.parentNode.parentNode.rowIndex;
+    document.getElementById('delete-id').value = table.rows[index].cells[0].innerHTML;
+}
+function barangReq(modalID, buttonID, tableID) {
+    var modalContainer = document.querySelector('.modal');
+    var modal = document.getElementById(modalID);
+    var table = document.getElementById(tableID);
+
+    modalContainer.style.display = 'flex';
+    modal.style.display = 'flex';
+
+    var index = buttonID.parentNode.parentNode.rowIndex;
+    document.getElementById('req-id').value = table.rows[index].cells[0].innerHTML;
+    document.getElementById('req-nama').value = table.rows[index].cells[1].innerHTML;
+    document.getElementById('req-harga').value = table.rows[index].cells[2].innerHTML;
+}
 
 function closeModal(modalID) {
     var modal = document.getElementById(modalID);

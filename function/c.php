@@ -178,6 +178,36 @@ class cAdmin
         header('Location: adminStorage');
         exit;
     }
+    public function editBarang($id, $nama, $harga, $stok)
+    {
+        $sql = "UPDATE barang, stok_barang
+        SET nama_barang = '$nama', harga_barang = '$harga', stok_barang.stok_barang = '$stok'
+        WHERE
+        stok_barang.id_barang = barang.id_barang
+        AND barang.id_barang = '$id'";
+        $this->db->query($sql);
+        header('Location: adminStorage');
+        exit;
+    }
+    public function deleteBarang($id)
+    {
+        $sql = "DELETE barang, stok_barang
+        FROM barang
+        INNER JOIN stok_barang
+        ON barang.id_barang = stok_barang.id_barang
+        WHERE barang.id_barang = '$id'";
+        $this->db->query($sql);
+        header('Location: adminStorage');
+        exit;
+    }
+    public function reqBarang($id, $nama, $harga, $qty, $desc)
+    {
+        $sql = "INSERT INTO request_barang (id_barang, nama_barang, harga_barang, qty_barang, deskripsi)
+        VALUES ('$id', '$nama', '$harga', '$qty', '$desc')";
+        $this->db->query($sql);
+        header('Location: adminStorage');
+        exit;
+    }
 }
 
 

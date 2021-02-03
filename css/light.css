@@ -35,6 +35,15 @@ body {
           font-feature-settings: 'liga';
 }
 
+.disabled {
+  opacity: 0.5 !important;
+  cursor: default !important;
+}
+
+.disabled:hover {
+  color: #25292C;
+}
+
 @-webkit-keyframes loading {
   0% {
     opacity: 1.0;

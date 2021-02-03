@@ -20,6 +20,18 @@ if (isset($_POST['searchQuery'])) {
 if (isset($_POST['addBarang'])) {
     $dataBarang = $cAdmin->newBarang($_POST['id-barang'], $_POST['nama-barang'], $_POST['harga-barang'], $_POST['stok-barang']);
 }
+if (isset($_POST['editBarang'])) {
+    $dataBarang = $cAdmin->editBarang($_POST['edit-id'], $_POST['edit-nama'], $_POST['edit-harga'], $_POST['edit-stok']);
+}
+if (isset($_POST['deleteBarang'])) {
+    $dataBarang = $cAdmin->deleteBarang($_POST['delete-id']);
+}
+if (isset($_POST['requestBarang'])) {
+    // if ($_POST['req-desc'] == null) {
+    //     $_POST['req-desc'] = '';
+    // }
+    $dataBarang = $cAdmin->reqBarang($_POST['req-id'], $_POST['req-nama'], $_POST['req-harga'], $_POST['req-qty'], $_POST['req-desc']);
+}
 ?>
 
 <script src='assets\js\app.js'></script>
@@ -47,11 +59,11 @@ if (isset($_POST['addBarang'])) {
                 </div>
                 <!-- Gudang Table -->
                 <div class="table">
-                    <table>
+                    <table id="table-barang">
                         <thead>
                             <tr>
-                                <th style="width: 10vw !important;">ID Barang</th>
-                                <th style="width: 35vw !important;">Nama Barang</th>
+                                <th style="width: 7vw !important;">ID Barang</th>
+                                <th style="width: 45vw !important;">Nama Barang</th>
                                 <th>Harga Satuan</th>
                                 <th>Stok Barang</th>
                                 <th style="width: 10vw !important;">Action</th>
@@ -65,10 +77,14 @@ if (isset($_POST['addBarang'])) {
                                     <td><?= $b['harga_barang']; ?></td>
                                     <td><?= $b['stok_barang']; ?></td>
                                     <td class="table-action">
-                                        <button id="btn-edit-barang"><i class="add material-icons"> create </i></button>
-                                        <button id="btn-delete-barang"><i class="delete material-icons"> remove_circle_outline </i></button>
+                                        <button id="btn-edit-barang" onclick="barangEdit('modal-editBarang', this, 'table-barang')"><i class="add material-icons"> create </i></button>
+                                        <button id="btn-delete-barang" onclick="barangDelete('modal-deleteBarang', this, 'table-barang')"><i class="delete material-icons"> remove_circle_outline </i></button>
                                         <?php if (password_verify('superAdmin', $_COOKIE['session']) == true) : ?>
-                                            <button id="btn-req-barang"><i class="delete material-icons"> inventory_2 </i></button>
+                                            <?php if ($b['stok_barang'] == 0) : ?>
+                                                <button id="btn-req-barang" onclick="barangReq('modal-requestStock', this, 'table-barang')"><i class="delete material-icons"> inventory_2 </i></button>
+                                            <?php else : ?>
+                                                <button id="btn-req-barang" onclick="barangReq('modal-requestStock', this, 'table-barang')"><i class="delete material-icons disabled"> inventory_2 </i></button>
+                                            <?php endif; ?>
                                         <?php endif; ?>
                                     </td>
                                 </tr>
@@ -107,20 +123,20 @@ if (isset($_POST['addBarang'])) {
         <!-- Edit Employee -->
         <div id="modal-editBarang" class="editBarang modal-container">
             <span>Ubah Data Barang</span>
-            <form>
-                <label for="edit-id">ID Barang: </label>
-                <input type="text" id="edit-id" placeholder="">
+            <form method="post" autocomplete="off">
+                <!-- <label for="edit-id">ID Barang: </label> -->
+                <input type="hidden" name="edit-id" id="edit-id" placeholder="">
 
                 <label for="edit-nama">Nama Barang: </label>
-                <input type="text" id="edit-nama" placeholder="">
+                <input type="text" name="edit-nama" id="edit-nama" placeholder="">
 
                 <label for="edit-harga">Harga Satuan:</label>
-                <input type="number" id="edit-harga" placeholder="">
+                <input type="number" name="edit-harga" id="edit-harga" placeholder="">
 
                 <label for="edit-stok">Stok Barang:</label>
-                <input type="text" id="edit-stok" placeholder="">
+                <input type="text" name="edit-stok" id="edit-stok" placeholder="">
                 <br>
-                <button class="btn-ok">Submit</button>
+                <button class="btn-ok" name="editBarang">Submit</button>
             </form>
             <button class="btn-no" onclick="closeModal('modal-editBarang')">Batal</button>
         </div>
@@ -128,9 +144,10 @@ if (isset($_POST['addBarang'])) {
         <!-- Delete Employee -->
         <div id="modal-deleteBarang" class="deleteBarang modal-container">
             <span>Hapus Data Barang?</span>
-            <form>
+            <form method="post">
+                <input type="hidden" name="delete-id" id="delete-id">
                 <label>Apa anda yakin ingin menghapus data barang?</label>
-                <button class="btn-no">Hapus</button>
+                <button class="btn-no" name="deleteBarang">Hapus</button>
             </form>
             <button class="btn-ok" onclick="closeModal('modal-deleteBarang')">Batal</button>
         </div>
@@ -138,14 +155,19 @@ if (isset($_POST['addBarang'])) {
         <!-- Salary Employee -->
         <div id="modal-requestStock" class="requestStock modal-container">
             <span>Request Stok</span>
-            <form>
-                <label for="req-id">ID Barang: </label>
-                <input type="text" id="req-id" placeholder="">
+            <form method="post" autocomplete="off">
+                <!-- <label for="req-id">ID Barang: </label> -->
+                <input type="hidden" name="req-id" id="req-id" placeholder="">
+                <input type="hidden" name="req-nama" id="req-nama">
+                <input type="hidden" name="req-harga" id="req-harga">
 
                 <label for="req-qty">Request Banyak Stok: </label>
-                <input type="number" id="req-qty" placeholder="">
+                <input type="number" name="req-qty" id="req-qty" placeholder="0">
+
+                <label for="req-desc">Keterangan: </label>
+                <input type="text" name="req-desc" id="req-desc" placeholder="Masukkan Keterangan">
                 <br>
-                <button class="btn-ok">Submit</button>
+                <button class="btn-ok" name="requestBarang">Submit</button>
             </form>
             <button class="btn-no" onclick="closeModal('modal-requestStock')">Batal</button>
         </div>
