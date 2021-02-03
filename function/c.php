@@ -167,6 +167,17 @@ class cAdmin
         $query = $this->db->query($sql);
         return $query;
     }
+    public function newBarang($id, $nama, $harga, $stok)
+    {
+        $sqlBarang = "INSERT INTO barang (id_barang, nama_barang, harga_barang)
+        VALUES ('$id', '$nama', '$harga')";
+        $sqlStok = "INSERT INTO stok_barang (id_barang, stok_barang)
+        VALUES ('$id', '$stok')";
+        $this->db->query($sqlBarang);
+        $this->db->query($sqlStok);
+        header('Location: adminStorage');
+        exit;
+    }
 }
 
 

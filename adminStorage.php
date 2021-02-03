@@ -17,6 +17,9 @@ $dataBarang = $vAdmin->showStorage();
 if (isset($_POST['searchQuery'])) {
     $dataBarang = $cAdmin->searchGudang($_POST['searchQuery']);
 }
+if (isset($_POST['addBarang'])) {
+    $dataBarang = $cAdmin->newBarang($_POST['id-barang'], $_POST['nama-barang'], $_POST['harga-barang'], $_POST['stok-barang']);
+}
 ?>
 
 <script src='assets\js\app.js'></script>
@@ -83,20 +86,20 @@ if (isset($_POST['searchQuery'])) {
         <!-- Add Employee -->
         <div id="modal-addBarang" class="addBarang modal-container">
             <span>Tambah Barang</span>
-            <form>
-                <label for="id">ID Barang: </label>
-                <input type="text" id="id" placeholder="">
+            <form method="post" autocomplete="off">
+                <label for="id-barang">ID Barang: </label>
+                <input type="text" name="id-barang" id="id-barang" placeholder="">
 
-                <label for="nama">Nama Barang: </label>
-                <input type="text" id="nama" placeholder="">
+                <label for="nama-barang">Nama Barang: </label>
+                <input type="text" name="nama-barang" id="nama-barang" placeholder="">
 
-                <label for="harga">Harga Satuan:</label>
-                <input type="number" id="harga" placeholder="">
+                <label for="harga-barang">Harga Satuan:</label>
+                <input type="number" name="harga-barang" id="harga-barang" placeholder="">
 
-                <label for="stok">Stok Barang:</label>
-                <input type="text" id="stok" placeholder="">
+                <label for="stok-barang">Stok Barang:</label>
+                <input type="text" name="stok-barang" id="stok-barang" placeholder="">
                 <br>
-                <button class="btn-ok">Submit</button>
+                <button class="btn-ok" name="addBarang">Submit</button>
             </form>
             <button class="btn-no" onclick="closeModal('modal-addBarang')">Batal</button>
         </div>
@@ -123,7 +126,7 @@ if (isset($_POST['searchQuery'])) {
         </div>
 
         <!-- Delete Employee -->
-        <div id=" modal-deleteBarang" class="deleteBarang modal-container">
+        <div id="modal-deleteBarang" class="deleteBarang modal-container">
             <span>Hapus Data Barang?</span>
             <form>
                 <label>Apa anda yakin ingin menghapus data barang?</label>
