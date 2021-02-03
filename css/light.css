@@ -1,0 +1,1387 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box !important;
+          box-sizing: border-box !important;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+body {
+  background-color: #F7F7FC;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  overflow: auto;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 12px;
+  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-feature-settings: 'liga';
+          font-feature-settings: 'liga';
+}
+
+@-webkit-keyframes loading {
+  0% {
+    opacity: 1.0;
+  }
+  20% {
+    opacity: 1.0;
+  }
+  90% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes loading {
+  0% {
+    opacity: 1.0;
+  }
+  20% {
+    opacity: 1.0;
+  }
+  90% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+.loading {
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  z-index: 10;
+  background-color: #1A6AAE;
+}
+
+.loading img {
+  width: 10%;
+  -webkit-animation: loading 1s linear infinite alternate;
+          animation: loading 1s linear infinite alternate;
+}
+
+.loading span {
+  margin: 1rem;
+  color: #F7F7FC;
+  font-weight: 800;
+  font-size: large;
+  -webkit-animation: loading 1s linear infinite alternate;
+          animation: loading 1s linear infinite alternate;
+}
+
+.login-wrapper {
+  width: 70vh;
+  height: 40vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  margin: 25vh auto;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+}
+
+.login-wrapper img {
+  width: 60%;
+  display: block;
+  margin: .5rem auto;
+}
+
+.login-wrapper form span {
+  font-size: large;
+  font-weight: bold;
+}
+
+.login-wrapper form input {
+  width: 40%;
+  height: 1.75rem;
+  text-align: center;
+  border-radius: .5rem;
+  border: .5px solid black;
+  outline: none;
+  margin: .25rem;
+  font-size: large;
+}
+
+.login-wrapper form input:active {
+  outline: none;
+}
+
+.login-wrapper form input:hover {
+  border: 0.5px solid #1A6AAE;
+}
+
+.login-wrapper form input:focus {
+  border: 0.5px solid #164C78;
+}
+
+.login-wrapper form button {
+  width: 40%;
+  height: 2rem;
+  background-color: #1A6AAE;
+  color: #ffffff;
+  font-size: large;
+  border: none;
+  outline: none;
+  border-radius: .5rem;
+}
+
+.login-wrapper form button:hover {
+  background-color: #164C78;
+  color: #F7F7FC;
+}
+
+.login-wrapper form label {
+  color: red;
+  font-size: large;
+}
+
+.login-wrapper form p {
+  margin: .5rem;
+  font-size: small;
+}
+
+.sidebar .debug {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.sidebar .debug button {
+  width: 5vw;
+  height: 20px;
+  margin: 10px 2px 0px 2px;
+  background-color: #1A6AAE;
+  color: #F7F7FC;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+.hide-sidebar {
+  width: 2vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  top: 0;
+  left: 15vw;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 2;
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.15)), to(rgba(0, 0, 0, 0)));
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+  color: #25292C;
+}
+
+.hide-sidebar:hover {
+  opacity: 1;
+}
+
+.show-sidebar {
+  width: 2vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 2;
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.15)), to(rgba(0, 0, 0, 0)));
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+  color: #25292C;
+}
+
+.show-sidebar:hover {
+  opacity: 1;
+}
+
+.sidebar {
+  width: 15vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  background-color: #ffffff;
+}
+
+.sidebar .user-info {
+  padding: 2rem;
+}
+
+.sidebar .user-info img {
+  width: 10rem;
+  height: 10rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  border: 7px solid #bcbdbf;
+  margin: 1rem auto;
+}
+
+.sidebar .user-info .nama {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.sidebar .user-info .info {
+  font-size: normal;
+}
+
+.sidebar hr {
+  width: 90%;
+  border-top: 1px solid black;
+}
+
+.sidebar ul {
+  width: 100%;
+  list-style-type: none;
+  text-align: end;
+  margin: .5rem auto;
+  cursor: pointer;
+}
+
+.sidebar ul li a {
+  width: 100%;
+  height: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 1rem;
+  background-color: #ffffff;
+  color: #25292C;
+  -webkit-transition: all 0.2s !important;
+  transition: all 0.2s !important;
+}
+
+.sidebar ul li a:hover {
+  background-color: #164C78;
+  color: #F7F7FC;
+}
+
+.sidebar ul li a i {
+  margin-right: 1rem;
+}
+
+.sidebar .web {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+}
+
+.sidebar .web img {
+  width: 1.5rem;
+  -o-object-fit: fill;
+     object-fit: fill;
+  margin: .25rem;
+}
+
+.sidebar .web .pt {
+  margin-top: 2.5vh;
+  opacity: .5;
+}
+
+.menu-selected {
+  background-color: #1A6AAE !important;
+  color: #F7F7FC !important;
+}
+
+.modal {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(0, 0, 0, 0.15);
+  position: fixed;
+  z-index: 10;
+}
+
+.modal-container {
+  width: auto;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 1rem;
+  border-radius: .5rem;
+  -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+}
+
+.modal-container .btn-ok {
+  background-color: #1A6AAE;
+}
+
+.modal-container .btn-ok:hover {
+  background-color: #164C78;
+}
+
+.modal-container .btn-no {
+  background-color: #D52935;
+}
+
+.modal-container .btn-no:hover {
+  background-color: #A1262F;
+}
+
+.modal-container form input[type=number]::-webkit-inner-spin-button, .modal-container form input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.content {
+  width: 80vw;
+  height: 100vh;
+  display: block;
+  position: fixed;
+  left: 15vw;
+  top: 0;
+  bottom: 0;
+  margin-left: 2.5vw;
+}
+
+.content .grid-wrapper {
+  width: 100%;
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-column-gap: 2vw;
+  grid-row-gap: 2vh;
+}
+
+.content .grid-wrapper .grid-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+  border-radius: 1rem;
+  background-color: #ffffff;
+}
+
+.grid-wrapper .grid-card .card-info {
+  width: 95%;
+  height: 5vh;
+  display: block;
+  margin: 0 auto;
+  text-align: start;
+  padding: .5rem;
+  position: relative;
+  top: -.5rem;
+}
+
+.grid-wrapper .grid-card .card-info span {
+  font-size: 24px;
+  font-weight: 800;
+  margin-left: 1rem;
+}
+
+.grid-wrapper .grid-card .card-info span i {
+  font-size: 24px;
+  position: relative;
+  top: .25rem;
+}
+
+.grid-wrapper .grid-card .table table {
+  width: 95%;
+  overflow-y: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: 0.5px solid black;
+  background-color: #F7F7FC;
+}
+
+.grid-wrapper .grid-card .table table, .grid-wrapper .grid-card .table th, .grid-wrapper .grid-card .table td {
+  border-collapse: collapse;
+}
+
+.grid-wrapper .grid-card .table th {
+  width: 15vw;
+  text-align: center;
+  background-color: #25292C;
+  color: #F7F7FC;
+}
+
+.grid-wrapper .grid-card .table td {
+  text-align: start;
+}
+
+.grid-wrapper .grid-card .table th, .grid-wrapper .grid-card .table td {
+  border: 1px solid black;
+  padding: .5rem;
+}
+
+.grid-wrapper .grid-card .table tr:nth-child(odd) {
+  background-color: #F7F7FC;
+}
+
+.grid-wrapper .grid-card .table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.admin-dash .grid-wrapper .table-karyawan {
+  height: 40vh;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1/2;
+}
+
+.admin-dash .grid-wrapper .table-karyawan .table table {
+  width: calc(95% - 1px);
+  height: 31vh;
+}
+
+.admin-dash .grid-wrapper .table-note {
+  height: 40vh;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1/2;
+}
+
+.admin-dash .grid-wrapper .table-note .notes-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.admin-dash .grid-wrapper .table-note .notes-title .title-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 1rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  -webkit-transition: all 0.1s !important;
+  transition: all 0.1s !important;
+  cursor: pointer;
+}
+
+.admin-dash .grid-wrapper .table-note .notes-title .title-button:hover {
+  color: #1A6AAE;
+}
+
+.admin-dash .grid-wrapper .table-note .notes-title .title-button span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  margin-right: .5rem;
+}
+
+.admin-dash .grid-wrapper .table-note .notes-title .title-button i {
+  font-size: 24px;
+  position: relative;
+  top: .05rem;
+}
+
+.admin-dash .grid-wrapper .table-note .table table {
+  height: 31vh;
+}
+
+.admin-dash .grid-wrapper .table-note .table table .table-action {
+  text-align: center;
+}
+
+.admin-dash .grid-wrapper .table-note .table table .table-action button {
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  -webkit-transition: all .1s !important;
+  transition: all .1s !important;
+}
+
+.admin-dash .grid-wrapper .table-note .table table .table-action button:hover:nth-child(odd) {
+  color: #1A6AAE;
+}
+
+.admin-dash .grid-wrapper .table-note .table table .table-action button:hover:nth-child(even) {
+  color: #D52935;
+}
+
+.admin-dash .grid-wrapper .table-note .table table .table-action button i {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.admin-dash .grid-wrapper .grafik-penjualan {
+  height: 40vh;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1/3;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2/3;
+}
+
+.admin-dash .grid-wrapper .grafik-penjualan #chartContainer {
+  width: 98%;
+  height: 30vh;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  top: 1rem;
+}
+
+.modal #modal-addNotes {
+  display: none;
+}
+
+.modal #modal-editNotes {
+  display: none;
+}
+
+.modal #modal-deleteNotes {
+  display: none;
+}
+
+.modal .addNotes, .modal .editNotes, .modal .deleteNotes {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal .addNotes span, .modal .editNotes span, .modal .deleteNotes span {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.modal .addNotes form, .modal .editNotes form, .modal .deleteNotes form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal .addNotes form textarea, .modal .editNotes form textarea, .modal .deleteNotes form textarea {
+  width: 25vw;
+  height: 15vh;
+  margin: 1rem auto;
+  padding: .5rem;
+  border: .5px solid black;
+  border-radius: .5rem;
+  outline: none;
+  resize: none;
+}
+
+.modal .addNotes form textarea:hover, .modal .editNotes form textarea:hover, .modal .deleteNotes form textarea:hover {
+  border: 0.5px solid #164C78;
+}
+
+.modal .addNotes form textarea:focus, .modal .editNotes form textarea:focus, .modal .deleteNotes form textarea:focus {
+  border: 0.5px solid #1A6AAE;
+}
+
+.modal .addNotes button, .modal .editNotes button, .modal .deleteNotes button {
+  width: 18vw;
+  height: 40px;
+  margin: .25rem auto;
+  border-radius: .5rem;
+  border: none;
+  outline: none;
+  color: #F7F7FC;
+  cursor: pointer;
+}
+
+.modal .deleteNotes label {
+  font-size: 20px;
+  margin: 2rem;
+}
+
+.admin-user .grid-wrapper .employee-list {
+  height: 90vh;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1/3;
+}
+
+.admin-user .grid-wrapper .employee-list .card-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.admin-user .grid-wrapper .employee-list .card-info .search {
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.admin-user .grid-wrapper .employee-list .card-info .search form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.admin-user .grid-wrapper .employee-list .card-info .search form input {
+  width: 75%;
+  padding: .5rem;
+  margin-right: 1rem;
+  border-radius: .5rem;
+  border: .5px solid black;
+  outline: none;
+  font-size: 18px;
+}
+
+.admin-user .grid-wrapper .employee-list .card-info .search form input:hover {
+  border: 0.5px solid #1A6AAE;
+}
+
+.admin-user .grid-wrapper .employee-list .card-info .search form input:focus {
+  border: 0.5px solid #164C78;
+}
+
+.admin-user .grid-wrapper .employee-list .card-info .search form .btn-search {
+  width: 128px;
+  border-radius: .5rem;
+  font-size: 16px;
+  background-color: #1A6AAE;
+  color: #F7F7FC;
+}
+
+.admin-user .grid-wrapper .employee-list .card-info .search form .btn-search:hover {
+  background-color: #164C78;
+}
+
+.admin-user .grid-wrapper .employee-list .card-info button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 1rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  -webkit-transition: all 0.1s !important;
+  transition: all 0.1s !important;
+  cursor: pointer;
+}
+
+.admin-user .grid-wrapper .employee-list .card-info button:hover {
+  color: #1A6AAE;
+}
+
+.admin-user .grid-wrapper .employee-list .card-info button span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  margin-right: .5rem;
+}
+
+.admin-user .grid-wrapper .employee-list .card-info button i {
+  font-size: 24px;
+  position: relative;
+  top: .05rem;
+}
+
+.admin-user .grid-wrapper .employee-list .table table {
+  width: calc(95% - 1px);
+  height: 70vh;
+}
+
+.admin-user .grid-wrapper .employee-list .table table .table-action {
+  text-align: center;
+}
+
+.admin-user .grid-wrapper .employee-list .table table .table-action button {
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  -webkit-transition: all .1s !important;
+  transition: all .1s !important;
+}
+
+.admin-user .grid-wrapper .employee-list .table table .table-action button:hover:nth-child(1) {
+  color: #1A6AAE;
+}
+
+.admin-user .grid-wrapper .employee-list .table table .table-action button:hover:nth-child(2) {
+  color: #D52935;
+}
+
+.admin-user .grid-wrapper .employee-list .table table .table-action button:hover:nth-child(3) {
+  color: #FDCF56;
+}
+
+.admin-user .grid-wrapper .employee-list .table table .table-action button i {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.modal #modal-addEmployee {
+  display: none;
+}
+
+.modal #modal-editEmployee {
+  display: none;
+}
+
+.modal #modal-deleteEmployee {
+  display: none;
+}
+
+.modal #modal-salaryEmployee {
+  display: none;
+}
+
+.modal .addEmployee, .modal .editEmployee, .modal .deleteEmployee, .modal .salaryEmployee {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal .addEmployee span, .modal .editEmployee span, .modal .deleteEmployee span, .modal .salaryEmployee span {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 1rem;
+  position: relative;
+  top: -1rem;
+}
+
+.modal .addEmployee form, .modal .editEmployee form, .modal .deleteEmployee form, .modal .salaryEmployee form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.modal .addEmployee form label, .modal .editEmployee form label, .modal .deleteEmployee form label, .modal .salaryEmployee form label {
+  width: 90%;
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.modal .addEmployee form input, .modal .editEmployee form input, .modal .deleteEmployee form input, .modal .salaryEmployee form input {
+  width: 18vw;
+  height: 32px;
+  margin: .25rem;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: .5rem;
+  outline: none;
+  font-size: 16px;
+}
+
+.modal .addEmployee form input:hover, .modal .editEmployee form input:hover, .modal .deleteEmployee form input:hover, .modal .salaryEmployee form input:hover {
+  border: 1px solid #164C78;
+}
+
+.modal .addEmployee form input:focus, .modal .editEmployee form input:focus, .modal .deleteEmployee form input:focus, .modal .salaryEmployee form input:focus {
+  border: 1px solid #1A6AAE;
+}
+
+.modal .addEmployee form select, .modal .editEmployee form select, .modal .deleteEmployee form select, .modal .salaryEmployee form select {
+  width: 18vw;
+  height: 32px;
+  margin: .25rem;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: .5rem;
+  outline: none;
+  font-size: 16px;
+}
+
+.modal .addEmployee button, .modal .editEmployee button, .modal .deleteEmployee button, .modal .salaryEmployee button {
+  width: 18vw;
+  height: 40px;
+  margin: .25rem auto;
+  border-radius: .5rem;
+  border: none;
+  outline: none;
+  color: #F7F7FC;
+  cursor: pointer;
+}
+
+.modal .deleteEmployee label {
+  font-size: 20px;
+  margin: 2rem;
+}
+
+.modal .salaryEmployee p {
+  display: block;
+  position: relative;
+  top: 1.9rem;
+  left: -42.5%;
+  font-weight: 700;
+}
+
+.admin-gudang .grid-wrapper .storage-list {
+  height: 90vh;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1/3;
+}
+
+.admin-gudang .grid-wrapper .storage-list .card-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.admin-gudang .grid-wrapper .storage-list .card-info .search {
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.admin-gudang .grid-wrapper .storage-list .card-info .search form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.admin-gudang .grid-wrapper .storage-list .card-info .search form input {
+  width: 75%;
+  padding: .5rem;
+  margin-right: 1rem;
+  border-radius: .5rem;
+  border: .5px solid black;
+  outline: none;
+  font-size: 18px;
+}
+
+.admin-gudang .grid-wrapper .storage-list .card-info .search form input:hover {
+  border: 0.5px solid #1A6AAE;
+}
+
+.admin-gudang .grid-wrapper .storage-list .card-info .search form input:focus {
+  border: 0.5px solid #164C78;
+}
+
+.admin-gudang .grid-wrapper .storage-list .card-info .search form .btn-search {
+  width: 128px;
+  border-radius: .5rem;
+  font-size: 16px;
+  background-color: #1A6AAE;
+  color: #F7F7FC;
+}
+
+.admin-gudang .grid-wrapper .storage-list .card-info .search form .btn-search:hover {
+  background-color: #164C78;
+}
+
+.admin-gudang .grid-wrapper .storage-list .card-info button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 1rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  -webkit-transition: all 0.1s !important;
+  transition: all 0.1s !important;
+  cursor: pointer;
+}
+
+.admin-gudang .grid-wrapper .storage-list .card-info button:hover {
+  color: #1A6AAE;
+}
+
+.admin-gudang .grid-wrapper .storage-list .card-info button span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  margin-right: .5rem;
+}
+
+.admin-gudang .grid-wrapper .storage-list .card-info button i {
+  font-size: 24px;
+  position: relative;
+  top: .05rem;
+}
+
+.admin-gudang .grid-wrapper .storage-list .table table {
+  width: calc(95% - 1px);
+  height: 70vh;
+}
+
+.admin-gudang .grid-wrapper .storage-list .table table .table-action {
+  text-align: center;
+}
+
+.admin-gudang .grid-wrapper .storage-list .table table .table-action button {
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  -webkit-transition: all .1s !important;
+  transition: all .1s !important;
+}
+
+.admin-gudang .grid-wrapper .storage-list .table table .table-action button:hover:nth-child(1) {
+  color: #1A6AAE;
+}
+
+.admin-gudang .grid-wrapper .storage-list .table table .table-action button:hover:nth-child(2) {
+  color: #D52935;
+}
+
+.admin-gudang .grid-wrapper .storage-list .table table .table-action button:hover:nth-child(3) {
+  color: #FDCF56;
+}
+
+.admin-gudang .grid-wrapper .storage-list .table table .table-action button i {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.modal #modal-addBarang {
+  display: none;
+}
+
+.modal #modal-editBarang {
+  display: none;
+}
+
+.modal #modal-deleteBarang {
+  display: none;
+}
+
+.modal #modal-requestStock {
+  display: none;
+}
+
+.modal .addBarang, .modal .editBarang, .modal .deleteBarang, .modal .requestStock {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal .addBarang span, .modal .editBarang span, .modal .deleteBarang span, .modal .requestStock span {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 1rem;
+  position: relative;
+  top: -1rem;
+}
+
+.modal .addBarang form, .modal .editBarang form, .modal .deleteBarang form, .modal .requestStock form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.modal .addBarang form label, .modal .editBarang form label, .modal .deleteBarang form label, .modal .requestStock form label {
+  width: 90%;
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.modal .addBarang form input, .modal .editBarang form input, .modal .deleteBarang form input, .modal .requestStock form input {
+  width: 18vw;
+  height: 32px;
+  margin: .25rem;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: .5rem;
+  outline: none;
+  font-size: 16px;
+}
+
+.modal .addBarang form input:hover, .modal .editBarang form input:hover, .modal .deleteBarang form input:hover, .modal .requestStock form input:hover {
+  border: 1px solid #164C78;
+}
+
+.modal .addBarang form input:focus, .modal .editBarang form input:focus, .modal .deleteBarang form input:focus, .modal .requestStock form input:focus {
+  border: 1px solid #1A6AAE;
+}
+
+.modal .addBarang form select, .modal .editBarang form select, .modal .deleteBarang form select, .modal .requestStock form select {
+  width: 18vw;
+  height: 32px;
+  margin: .25rem;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: .5rem;
+  outline: none;
+  font-size: 16px;
+}
+
+.modal .addBarang button, .modal .editBarang button, .modal .deleteBarang button, .modal .requestStock button {
+  width: 18vw;
+  height: 40px;
+  margin: .25rem auto;
+  border-radius: .5rem;
+  border: none;
+  outline: none;
+  color: #F7F7FC;
+  cursor: pointer;
+}
+
+.modal .deleteBarang label {
+  font-size: 20px;
+  margin: 2rem;
+}
+
+.modal .requestStock p {
+  display: block;
+  position: relative;
+  top: 1.9rem;
+  left: -42.5%;
+  font-weight: 700;
+}
+
+.user-setting .grid-wrapper .setting {
+  height: auto;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1/4;
+}
+
+.user-setting .grid-wrapper .setting .card-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 1.5rem 2rem 0 2rem;
+}
+
+.user-setting .grid-wrapper .setting table {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0 2rem 2rem 2rem;
+  padding: 1rem;
+  background-color: #F7F7FC;
+  border-radius: .5rem;
+  border: 1px solid black;
+}
+
+.user-setting .grid-wrapper .setting table .settingPhoto {
+  width: 25vw;
+  display: block;
+  padding: 1rem;
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.user-setting .grid-wrapper .setting table .settingPhoto h2 {
+  text-align: start;
+  margin-bottom: 2rem;
+}
+
+.user-setting .grid-wrapper .setting table .settingPhoto img {
+  width: 12rem;
+  height: 12rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: .5rem;
+  margin: 1rem auto 3rem auto;
+}
+
+.user-setting .grid-wrapper .setting table .settingPhoto input {
+  width: 90%;
+  margin: 1rem;
+}
+
+.user-setting .grid-wrapper .setting table .inputLeft {
+  border-left: 1px solid black;
+}
+
+.user-setting .grid-wrapper .setting table .inputLeft, .user-setting .grid-wrapper .setting table .inputRight {
+  width: 25vw;
+  vertical-align: top;
+  padding: 2rem;
+}
+
+.user-setting .grid-wrapper .setting table .inputLeft input, .user-setting .grid-wrapper .setting table .inputRight input {
+  width: 95%;
+  padding: .5rem;
+  margin: 1rem;
+}
+
+.user-setting .grid-wrapper .setting table .inputLeft textarea, .user-setting .grid-wrapper .setting table .inputRight textarea {
+  width: 95%;
+  padding: .25rem;
+  margin: 1rem;
+  resize: none;
+}
+
+.user-setting .grid-wrapper .setting table input[type="file"] {
+  background-color: #ffffff;
+  padding: .5rem;
+  border: 1px solid black;
+  border-radius: .5rem;
+  outline: none;
+}
+
+.user-setting .grid-wrapper .setting table input[type="file"]:focus {
+  outline: none;
+}
+
+.user-setting .grid-wrapper .setting table input[type="text"], .user-setting .grid-wrapper .setting table input[type="password"], .user-setting .grid-wrapper .setting table textarea {
+  border-radius: .5rem;
+  border: .5px solid black;
+  outline: none;
+  font-size: 18px;
+}
+
+.user-setting .grid-wrapper .setting table input[type="text"]:hover, .user-setting .grid-wrapper .setting table input[type="password"]:hover, .user-setting .grid-wrapper .setting table textarea:hover {
+  border: 0.5px solid #1A6AAE;
+}
+
+.user-setting .grid-wrapper .setting table input[type="text"]:focus, .user-setting .grid-wrapper .setting table input[type="password"]:focus, .user-setting .grid-wrapper .setting table textarea:focus {
+  border: 0.5px solid #164C78;
+}
+
+.user-setting .grid-wrapper .setting button {
+  width: 18vw;
+  height: 48px;
+  display: block;
+  margin: auto 2rem 2rem auto;
+  font-size: 18px;
+  background-color: #1A6AAE;
+  color: #ffffff;
+  border-radius: .5rem;
+  border: none;
+  outline: none;
+  -webkit-transition: all 0.5s !important;
+  transition: all 0.5s !important;
+  cursor: pointer;
+}
+
+.user-setting .grid-wrapper .setting button:hover {
+  background-color: #164C78;
+  color: #F7F7FC;
+}
+
+.user-setting .grid-wrapper .setting .btn-upload {
+  width: 10vw;
+  margin: auto 2rem auto auto;
+}
+/*# sourceMappingURL=light.css.map */

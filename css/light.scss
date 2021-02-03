@@ -1,0 +1,1205 @@
+//Variable
+$col-1: #D52935;
+$col-2: #1A6AAE;
+$col-3: #FDCF56;
+$col-var-1: #A1262F;
+$col-var-2: #164C78;
+$col-var-3: #C9A450;
+$col-bg: #F7F7FC;
+$col-text: #25292C;
+$col-level1: #ffffff;
+$col-level2: #B1B1B1;
+$col-level3: #7E7F7F;
+$shadow-color: rgba(0,0,0,0.15);
+
+//Global
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box !important;
+    transition: all 0.5s;
+}
+body {
+    background-color: $col-bg;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+
+    overflow: auto;
+}
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 12px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+  /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+}
+
+
+//Loading
+@keyframes loading {
+    0% {
+        opacity: 1.0;
+    }
+    20% {
+        opacity: 1.0;
+    }
+    90% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 0.2;
+    }
+}
+.loading {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 10;
+
+    background-color: $col-2;
+
+    & img {
+        width: 10%;
+        animation: loading 1s linear infinite alternate;
+    }
+    & span {
+        margin: 1rem;
+        color: $col-bg;
+        font-weight: 800;
+        font-size: large;
+        animation: loading 1s linear infinite alternate;
+    }
+}
+
+//Login
+.login-wrapper {
+    width: 70vh;
+    height: 40vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin: 25vh auto;
+    text-align: center;
+
+    background-color: $col-level1;
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem $shadow-color;
+
+    & img {
+        width: 60%;
+        
+        display: block;
+        margin: .5rem auto;
+    }
+
+    & form {
+        & span {
+            font-size: large;
+            font-weight: bold;
+        }
+        & input {
+            width: 40%;
+            height: 1.75rem;
+
+            text-align: center;
+            border-radius: .5rem;
+            border: .5px solid black;
+            outline: none;
+            margin: .25rem;
+
+            font-size: large;
+
+            &:active {
+                outline: none;
+            }
+            &:hover {
+                border: .5px solid $col-2;
+            }
+            &:focus {
+                border: .5px solid $col-var-2;
+            }
+        }
+        & button {
+            width: 40%;
+            height: 2rem;
+
+            background-color: $col-2;
+            color: $col-level1;
+            font-size: large;
+            border: none;
+            outline: none;
+            border-radius: .5rem;
+
+            &:hover {
+                background-color: $col-var-2;
+                color: $col-bg;
+            }
+        }
+        & label {
+            color: red;
+            font-size: large;
+        }
+        & p {
+            margin: .5rem;
+            font-size: small;
+        }
+    }
+}
+
+//Sidebar
+.sidebar .debug {
+    display: flex;
+    justify-content: center;
+    button {
+        width: 5vw;
+        height: 20px;
+        margin: 10px 2px 0px 2px;
+        background-color: $col-2;
+        color: $col-bg;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+    }
+}
+.hide-sidebar {
+    width: 2vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 15vw;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 2;
+
+    background-image: linear-gradient(to right, $shadow-color, rgba(0,0,0,0));
+    color: $col-text;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+.show-sidebar {
+    width: 2vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 2;
+
+    background-image: linear-gradient(to right, $shadow-color, rgba(0,0,0,0));
+    color: $col-text;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+.sidebar {
+    width: 15vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    text-align: center;
+    border-right: 1px solid rgba(black, .15);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+
+    background-color: $col-level1;
+
+    & .user-info {
+        padding: 2rem;
+
+        & img {
+            width: 10rem;
+            height: 10rem;
+
+            object-fit: cover;
+            border-radius: 50%;
+            border: 7px solid #bcbdbf;
+            margin: 1rem auto;
+        }
+        & .nama {
+            font-size: 25px;
+            font-weight: bold;
+        }
+        & .info {
+            font-size: normal;
+        }
+    }
+
+    & hr {
+        width: 90%;
+        border-top: 1px solid black;
+    }
+
+    & ul {
+        width: 100%;
+
+        list-style-type: none;
+        text-align: end;
+        margin: .5rem auto;
+        cursor: pointer;
+
+        & li a {
+            width: 100%;
+            height: 3rem;
+
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 1rem;
+
+            background-color: $col-level1;
+            color: $col-text;
+
+            transition: all 0.2s !important;
+
+            &:hover {
+                background-color: $col-var-2;
+                color: $col-bg;
+            }
+
+            & i {
+                margin-right: 1rem;
+            }
+        }
+    }
+
+    & .web {
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+
+        & img {
+            width: 1.5rem;
+
+            object-fit: fill;
+            margin: .25rem;
+        }
+        & .pt {
+            margin-top: 2.5vh;
+            opacity: .5;
+        }
+    }
+}
+.menu-selected {
+    background-color: $col-2 !important;
+    color: $col-bg !important;
+}
+
+//Modal
+.modal {
+    width: 100vw;
+    height: 100vh;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color: #000000, $alpha: .15);
+    position: fixed;
+    z-index: 10;
+}
+.modal-container {
+    width: auto;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: .5rem;
+    box-shadow: 0 0 1rem $shadow-color;
+
+    background-color: $col-level1;
+
+    & .btn-ok {
+        background-color: $col-2;
+        &:hover {
+            background-color: $col-var-2;
+        }
+    }
+    & .btn-no {
+        background-color: $col-1;
+        &:hover {
+            background-color: $col-var-1;
+        }
+    }
+
+    & form {
+        & input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+    }
+}
+
+//Admin Dashboard
+.content {
+    width: 80vw;
+    height: 100vh;
+
+    display: block;
+    position: fixed;
+    left: 15vw;
+    top: 0;
+    bottom: 0;
+    margin-left: 2.5vw;
+}
+.content .grid-wrapper {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    grid-column-gap: 2vw;
+    grid-row-gap: 2vh;
+}
+.content .grid-wrapper .grid-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 0 1rem $shadow-color;
+    border-radius: 1rem;
+
+    background-color: $col-level1;
+}
+.grid-wrapper .grid-card .card-info {
+    width: 95%;
+    height: 5vh;
+    
+    display: block;
+    margin: 0 auto;
+    text-align: start;
+    padding: .5rem;
+    position: relative;
+    top: -.5rem;
+
+    & span {
+        font-size: 24px;
+        font-weight: 800;
+        margin-left: 1rem;
+
+        & i {
+            font-size: 24px;
+            position: relative;
+            top: .25rem;
+        }
+    }
+}
+.grid-wrapper .grid-card .table {
+    & table {
+        width: 95%;
+
+        overflow-y: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border: 0.5px solid black;
+
+        background-color: $col-bg;
+    }
+    & table, th, td {
+        border-collapse: collapse;
+    }
+    & th {
+        width: 15vw;
+
+        text-align: center;
+
+        background-color: $col-text;
+        color: $col-bg;
+    }
+    & td {
+        text-align: start;
+    }
+    & th, td {
+        border: 1px solid black;
+        padding: .5rem;
+    }
+    & tr:nth-child(odd){
+        background-color: $col-bg;
+    }
+    & tr:nth-child(even){
+        background-color: $col-level1;
+    }
+}
+
+//Admin Dashboard Content
+.admin-dash .grid-wrapper .table-karyawan {
+    height: 40vh;
+    
+    grid-column: 1/2;
+    grid-row: 1/2;
+    
+    & .table table {
+        width: calc(95% - 1px);
+        height: 31vh;
+    }
+}
+.admin-dash .grid-wrapper .table-note {
+    height: 40vh;
+    
+    grid-column: 2/3;
+    grid-row: 1/2;
+
+    & .notes-title {
+        display: flex;
+        justify-content: space-between;
+
+        & .title-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1rem;
+            
+            background-color: transparent;
+            border: none;
+            outline: none;
+
+            transition: all 0.1s !important;
+            cursor: pointer;
+
+            &:hover {
+                color: $col-2;
+            }
+
+            & span {
+                font-family: 'Montserrat', sans-serif;
+                font-size: 24px;
+                font-weight: 800;
+                margin-right: .5rem;
+            }
+
+            & i {
+                font-size: 24px;
+                position: relative;
+                top: .05rem;
+            }
+        }
+    }
+
+    & .table table {
+        height: 31vh;
+
+        & .table-action {
+            text-align: center;
+
+            & button {
+                width: 32px;
+                height: 32px;
+
+                background-color: transparent;
+                border: none;
+                outline: none;
+
+                transition: all .1s !important;
+
+                &:hover:nth-child(odd) {
+                    color: $col-2;
+                }
+                &:hover:nth-child(even) {
+                    color: $col-1;
+                }
+
+                & i {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                cursor: pointer;
+                }
+            }
+        }
+    }
+}
+.admin-dash .grid-wrapper .grafik-penjualan {
+    height: 40vh;
+    
+    grid-column: 1/3;
+    grid-row: 2/3;
+
+    & #chartContainer {
+        width: 98%;
+        height: 30vh;
+
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        top: 1rem;
+    }
+}
+.modal {
+    & #modal-addNotes {
+        display: none;
+    }
+
+    & #modal-editNotes {
+        display: none;
+    }
+    & #modal-deleteNotes {
+        display: none;
+    }
+}
+.modal .addNotes, .modal .editNotes, .modal .deleteNotes {
+    justify-content: center;
+    align-items: center;
+
+    & span {
+        font-size: 24px;
+        font-weight: 800;
+    }
+    & form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        & textarea {
+            width: 25vw;
+            height: 15vh;
+
+            margin: 1rem auto;
+            padding: .5rem;
+            border: .5px solid black;
+            border-radius: .5rem;
+            outline: none;
+            resize: none;
+
+            &:hover {
+                border: .5px solid $col-var-2;
+            }
+            &:focus {
+                border: .5px solid $col-2;
+            }
+        }
+    }
+    & button {
+        width: 18vw;
+        height: 40px;
+
+        margin: .25rem auto;
+        border-radius: .5rem;
+        border: none;
+        outline: none;
+
+        color: $col-bg;
+
+        cursor: pointer;
+    }
+
+}
+.modal .deleteNotes {
+    & label {
+        font-size: 20px;
+        margin: 2rem;
+    }
+}
+
+//Admin User Content
+.admin-user .grid-wrapper .employee-list {
+    height: 90vh;
+
+    grid-column: 1/3;
+    
+    & .card-info {
+        display: flex;
+        justify-content: space-between;
+
+        & .search {
+            width: 30%;
+            
+            display: flex;
+            flex-direction: row;
+            
+            & form {
+                display: flex;
+                flex-direction: row;
+                
+                & input {
+                    width: 75%;
+
+                    padding: .5rem;
+                    margin-right: 1rem;
+                    border-radius: .5rem;
+                    border: .5px solid black;
+                    outline: none;
+
+                    font-size: 18px;
+
+                    &:hover {
+                        border: .5px solid $col-2;
+                    }
+                    &:focus {
+                        border: .5px solid $col-var-2;
+                    }
+                }
+                & .btn-search {
+                    width: 128px;
+                    
+                    border-radius: .5rem;
+                    font-size: 16px;
+
+                    background-color: $col-2;
+                    color: $col-bg;
+
+                    &:hover {
+                        background-color: $col-var-2;
+                    }
+                }
+            }
+        }
+        & button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1rem;
+            
+            background-color: transparent;
+            border: none;
+            outline: none;
+
+            transition: all 0.1s !important;
+            cursor: pointer;
+
+            &:hover {
+                color: $col-2;
+            }
+
+            & span {
+                font-family: 'Montserrat', sans-serif;
+                font-size: 24px;
+                font-weight: 800;
+                margin-right: .5rem;
+            }
+
+            & i {
+                font-size: 24px;
+                position: relative;
+                top: .05rem;
+            }
+        }
+    }
+    & .table table {
+        width: calc(95% - 1px);
+        height: 70vh;
+
+        & .table-action {
+            text-align: center;
+
+            & button {
+                width: 32px;
+                height: 32px;
+
+                background-color: transparent;
+                border: none;
+                outline: none;
+
+                transition: all .1s !important;
+                
+                &:hover:nth-child(1) {
+                    color: $col-2;
+                }
+                &:hover:nth-child(2) {
+                    color: $col-1;
+                }
+                &:hover:nth-child(3) {
+                    color: $col-3;
+                }
+
+                & i {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+.modal {
+    & #modal-addEmployee {
+        display: none;
+    }
+    & #modal-editEmployee {
+        display: none;
+    }
+    & #modal-deleteEmployee {
+        display: none;
+    }
+    & #modal-salaryEmployee {
+        display: none;
+    }
+}
+.modal .addEmployee, .modal .editEmployee, .modal .deleteEmployee, .modal .salaryEmployee {
+    justify-content: center;
+    align-items: center;
+
+    & span {
+        font-size: 24px;
+        font-weight: 800;
+        margin: 1rem;
+        position: relative;
+        top: -1rem;
+    }
+    & form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        & label {
+            width: 90%;
+
+            text-align: left;
+            margin-top: 1rem;
+        }
+        & input {
+            width: 18vw;
+            height: 32px;
+
+            margin: .25rem;
+            text-align: center;
+            border: 1px solid black;
+            border-radius: .5rem;
+            outline: none;
+
+            font-size: 16px;
+
+            &:hover {
+                border: 1px solid $col-var-2;
+            }
+            &:focus {
+                border: 1px solid $col-2;
+            }
+        }
+        & select {
+            width: 18vw;
+            height: 32px;
+
+            margin: .25rem;
+            text-align: center;
+            border: 1px solid black;
+            border-radius: .5rem;
+            outline: none;
+            
+            font-size: 16px;
+        }
+    }
+    & button {
+        width: 18vw;
+        height: 40px;
+
+        margin: .25rem auto;
+        border-radius: .5rem;
+        border: none;
+        outline: none;
+
+        color: $col-bg;
+
+        cursor: pointer;
+    }
+}
+.modal .deleteEmployee {
+    & label {
+        font-size: 20px;
+        margin: 2rem;
+    }
+}
+.modal .salaryEmployee {
+    & p {
+        display: block;
+        position: relative;
+        top: 1.9rem;
+        left: -42.5%;
+
+        font-weight: 700;
+    }
+}
+
+//Admin Keuangan Content
+
+//Admin Gudang Content
+.admin-gudang .grid-wrapper .storage-list {
+    height: 90vh;
+
+    grid-column: 1/3;
+    
+    & .card-info {
+        display: flex;
+        justify-content: space-between;
+
+        & .search {
+            width: 30%;
+            
+            display: flex;
+            flex-direction: row;
+            
+            & form {
+                display: flex;
+                flex-direction: row;
+                
+                & input {
+                    width: 75%;
+
+                    padding: .5rem;
+                    margin-right: 1rem;
+                    border-radius: .5rem;
+                    border: .5px solid black;
+                    outline: none;
+
+                    font-size: 18px;
+
+                    &:hover {
+                        border: .5px solid $col-2;
+                    }
+                    &:focus {
+                        border: .5px solid $col-var-2;
+                    }
+                }
+                & .btn-search {
+                    width: 128px;
+                    
+                    border-radius: .5rem;
+                    font-size: 16px;
+
+                    background-color: $col-2;
+                    color: $col-bg;
+
+                    &:hover {
+                        background-color: $col-var-2;
+                    }
+                }
+            }
+        }
+        & button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1rem;
+            
+            background-color: transparent;
+            border: none;
+            outline: none;
+
+            transition: all 0.1s !important;
+            cursor: pointer;
+
+            &:hover {
+                color: $col-2;
+            }
+
+            & span {
+                font-family: 'Montserrat', sans-serif;
+                font-size: 24px;
+                font-weight: 800;
+                margin-right: .5rem;
+            }
+
+            & i {
+                font-size: 24px;
+                position: relative;
+                top: .05rem;
+            }
+        }
+    }
+    & .table table {
+        width: calc(95% - 1px);
+        height: 70vh;
+
+        & .table-action {
+            text-align: center;
+
+            & button {
+                width: 32px;
+                height: 32px;
+
+                background-color: transparent;
+                border: none;
+                outline: none;
+
+                transition: all .1s !important;
+                
+                &:hover:nth-child(1) {
+                    color: $col-2;
+                }
+                &:hover:nth-child(2) {
+                    color: $col-1;
+                }
+                &:hover:nth-child(3) {
+                    color: $col-3;
+                }
+
+                & i {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+.modal {
+    & #modal-addBarang {
+        display: none;
+    }
+    & #modal-editBarang {
+        display: none;
+    }
+    & #modal-deleteBarang {
+        display: none;
+    }
+    & #modal-requestStock {
+        display: none;
+    }
+}
+.modal .addBarang, .modal .editBarang, .modal .deleteBarang, .modal .requestStock {
+    justify-content: center;
+    align-items: center;
+
+    & span {
+        font-size: 24px;
+        font-weight: 800;
+        margin: 1rem;
+        position: relative;
+        top: -1rem;
+    }
+    & form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        & label {
+            width: 90%;
+
+            text-align: left;
+            margin-top: 1rem;
+        }
+        & input {
+            width: 18vw;
+            height: 32px;
+
+            margin: .25rem;
+            text-align: center;
+            border: 1px solid black;
+            border-radius: .5rem;
+            outline: none;
+
+            font-size: 16px;
+
+            &:hover {
+                border: 1px solid $col-var-2;
+            }
+            &:focus {
+                border: 1px solid $col-2;
+            }
+        }
+        & select {
+            width: 18vw;
+            height: 32px;
+
+            margin: .25rem;
+            text-align: center;
+            border: 1px solid black;
+            border-radius: .5rem;
+            outline: none;
+            
+            font-size: 16px;
+        }
+    }
+    & button {
+        width: 18vw;
+        height: 40px;
+
+        margin: .25rem auto;
+        border-radius: .5rem;
+        border: none;
+        outline: none;
+
+        color: $col-bg;
+
+        cursor: pointer;
+    }
+}
+.modal .deleteBarang {
+    & label {
+        font-size: 20px;
+        margin: 2rem;
+    }
+}
+.modal .requestStock {
+    & p {
+        display: block;
+        position: relative;
+        top: 1.9rem;
+        left: -42.5%;
+
+        font-weight: 700;
+    }
+}
+
+
+//User Settings
+.user-setting .grid-wrapper .setting{
+    height: auto;
+
+    grid-column: 1/4;
+
+    & .card-info {
+        display: flex;
+        justify-content: space-between;
+        margin: 1.5rem 2rem 0 2rem;
+    }
+
+    & table {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 0 2rem 2rem 2rem;
+        padding: 1rem;
+
+        background-color: $col-bg;
+        border-radius: .5rem;
+        border: 1px solid black;
+
+        & .settingPhoto {
+            width: 25vw;
+
+            display: block;
+            padding: 1rem;
+            margin:  1rem auto;
+            text-align: center;
+
+            & h2 {
+                text-align: start;
+                margin-bottom: 2rem;
+            }
+            & img {
+                width: 12rem;
+                height: 12rem;
+
+                object-fit: cover;
+                border-radius: .5rem;
+                margin: 1rem auto 3rem auto;
+            }
+            & input {
+                width: 90%;
+                margin: 1rem;
+            }
+        }
+        & .inputLeft {
+            border-left: 1px solid black;
+        }
+        & .inputLeft, .inputRight {
+            width: 25vw;
+            
+            vertical-align: top;
+            padding: 2rem;
+
+            & input {
+                width: 95%;
+                padding: .5rem;
+                margin: 1rem;
+            }
+            & textarea {
+                width: 95%;
+                
+                padding: .25rem;
+                margin: 1rem;
+
+                resize: none;
+            }
+        }
+
+        & input[type="file"] {
+            background-color: $col-level1;
+            padding: .5rem;
+            border: 1px solid black;
+            border-radius: .5rem;
+            outline: none;
+
+            &:focus {
+                outline: none;
+            }
+        }
+        & input[type="text"], input[type="password"], textarea {
+            border-radius: .5rem;
+            border: .5px solid black;
+            outline: none;
+
+            font-size: 18px;
+
+            &:hover {
+                border: .5px solid $col-2;
+            }
+            &:focus {
+                border: .5px solid $col-var-2;
+            }
+        }
+    }
+
+    & button {
+        width: 18vw;
+        height: 48px;
+
+        display: block;
+        margin: auto 2rem 2rem auto;
+
+        font-size: 18px;
+
+        background-color: $col-2;
+        color: $col-level1;
+        border-radius: .5rem;
+        border: none;
+        outline: none;
+
+        transition: all 0.5s !important;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $col-var-2;
+            color: $col-bg;
+        }
+    }
+    & .btn-upload {
+        width: 10vw;
+        margin: auto 2rem auto auto;
+    }
+}
