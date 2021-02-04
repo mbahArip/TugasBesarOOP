@@ -27,9 +27,6 @@ if (isset($_POST['deleteBarang'])) {
     $dataBarang = $cAdmin->deleteBarang($_POST['delete-id']);
 }
 if (isset($_POST['requestBarang'])) {
-    // if ($_POST['req-desc'] == null) {
-    //     $_POST['req-desc'] = '';
-    // }
     $dataBarang = $cAdmin->reqBarang($_POST['req-id'], $_POST['req-nama'], $_POST['req-harga'], $_POST['req-qty'], $_POST['req-desc']);
 }
 ?>

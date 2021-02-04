@@ -11,7 +11,7 @@ while (date.getMonth() == month) {
     date.setDate(date.getDate() + 1);
 }
 
-function adminDash(json) {
+function adminDash(json, chartContainer) {
     var data = {
         chart: {
             id: 'adminDash',
@@ -30,7 +30,7 @@ function adminDash(json) {
         }
     };
 
-    var drawChart = new ApexCharts(document.getElementById('chartContainer'), data);
+    var drawChart = new ApexCharts(document.getElementById(chartContainer), data);
 
     drawChart.render();
 }

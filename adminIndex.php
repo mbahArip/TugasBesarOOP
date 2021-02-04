@@ -133,11 +133,11 @@ if (isset($_POST['delete-notesID'])) {
                     <span>Pendapatan bulan ini <i class="material-icons">insert_chart</i></span>
                 </div>
                 <!-- Chart -->
-                <div id="chartContainer"></div>
+                <div id="adminDashboardChart" class="chartContainer"></div>
                 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
                 <script>
                     var json = <?= json_encode($arrayChart) ?>;
-                    adminDash(json, 2020);
+                    adminDash(json, 'adminDashboardChart');
                 </script>
             </div>
         </div>
