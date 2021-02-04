@@ -20,14 +20,7 @@ $dataNewEmployee = $vAdmin->showNewEmployee();
 $dataNotes = $vAdmin->showNotes();
 
 //Chart Data
-$arrayChart = array(
-    rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100),
-    rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100),
-    rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100),
-    rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100),
-    rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100),
-    rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100)
-);
+$dataChart = $cAdmin->processData();
 
 //Get Notes form
 if (isset($_POST['notes'])) {
@@ -136,8 +129,13 @@ if (isset($_POST['delete-notesID'])) {
                 <div id="adminDashboardChart" class="chartContainer"></div>
                 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
                 <script>
-                    var json = <?= json_encode($arrayChart) ?>;
-                    adminDash(json, 'adminDashboardChart');
+                    var jsonTest = <?= $dataChart; ?>;
+                    var jsonTanggal = Object.keys(jsonTest);
+                    var jsonPendapatan = []
+                    for (var i = 0; i < jsonTanggal.length; i++) {
+                        jsonPendapatan.push(jsonTest[jsonTanggal[i]]['pemasukan']);
+                    }
+                    adminDash(jsonPendapatan, jsonTanggal, 'adminDashboardChart', 'Pendapatan dalam IDR');
                 </script>
             </div>
         </div>

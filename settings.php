@@ -1,7 +1,6 @@
 <?php
 include 'layout/header.php';
 require 'function/c.php';
-require 'function/v.php';
 
 session_start();
 

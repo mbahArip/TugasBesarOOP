@@ -208,6 +208,39 @@ class cAdmin
         header('Location: adminStorage');
         exit;
     }
+
+    //Keuangan
+    public function processData()
+    {
+        $sql = "SELECT
+        transaksi.id_transaksi, tanggal_transaksi, detail_transaksi.id_karyawan, detail_transaksi.id_barang, detail_transaksi.qty_barang, detail_transaksi.total_harga
+        FROM transaksi
+        INNER JOIN detail_transaksi
+        ON transaksi.id_transaksi = detail_transaksi.id_transaksi
+        WHERE MONTH(tanggal_transaksi) = MONTH(now())";
+        $result = $this->db->query($sql);
+
+        //Check Data
+        if (mysqli_num_rows($result) > 0) {
+            $data = array();
+            while ($x = mysqli_fetch_assoc($result)) {
+                $h['id_transaksi'] = $x['id_transaksi'];
+                $h['tanggal_transaksi'] = $x['tanggal_transaksi'];
+                $h['id_karyawan'] = $x['id_karyawan'];
+                $h['qty_barang'] = $x['qty_barang'];
+                $h['total'] = $x['total_harga'];
+                array_push($data, $h);
+            }
+        }
+
+        $output = array();
+        foreach ($data as $d) {
+            $date = date("d-F-Y", strtotime($d['tanggal_transaksi']));
+            $output[$date]['pemasukan'] += $d['total'];
+        }
+        $json = json_encode($output, JSON_PRETTY_PRINT);
+        return $json;
+    }
 }
 
 

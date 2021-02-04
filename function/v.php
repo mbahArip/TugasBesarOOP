@@ -39,4 +39,20 @@ class vAdmin
         $query = $this->db->query($sql);
         return $query;
     }
+
+    //Keuangan
+    public function showKeu()
+    {
+        $sql = "SELECT * FROM lapkeuangan
+        WHERE MONTH(tanggal) = MONTH(now())";
+        $query = $this->db->query($sql);
+        return $query;
+    }
+    public function sum(String $column, String $table)
+    {
+        $sql = "SELECT SUM($column) FROM $table
+        WHERE MONTH(tanggal) = MONTH(now())";
+        $query = $this->db->query($sql);
+        return $query;
+    }
 }

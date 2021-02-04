@@ -11,7 +11,7 @@ while (date.getMonth() == month) {
     date.setDate(date.getDate() + 1);
 }
 
-function adminDash(json, chartContainer) {
+function adminDash(json, tanggal, chartContainer, seriesDetail) {
     var data = {
         chart: {
             id: 'adminDash',
@@ -19,11 +19,11 @@ function adminDash(json, chartContainer) {
             height: '75%'
         },
         series: [{
-            name: 'Pendapatan dalam juta',
+            name: seriesDetail,
             data: json
         }],
         xaxis: {
-            categories: all_days
+            categories: tanggal
         },
         theme: {
             mode: 'light'
