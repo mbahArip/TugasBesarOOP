@@ -1,12 +1,10 @@
 <?php
+$pageName = 'User Management';
 include 'layout/header.php';
 require 'function/c.php';
+require 'function/function.php';
 
 session_start();
-
-$sc = new sessionCookie();
-$vAdmin = new vAdmin();
-$cAdmin = new cAdmin();
 
 $sc->_checkSession('login');
 $condition = password_verify('admin', $_COOKIE['session']) == false && password_verify('debug', $_COOKIE['session']) == false && password_verify('superAdmin', $_COOKIE['session']) == false;
@@ -14,20 +12,25 @@ $sc->_checkRank($condition);
 
 $dataEmployee = $vAdmin->showEmployee();
 
+//Search Query
 if (isset($_POST['searchQuery'])) {
-    $dataEmployee = $cAdmin->searchQuery($_POST['searchQuery']);
+    $dataEmployee = $search->userSearch($_POST['searchQuery']);
 }
-if (isset($_POST['addEmployee'])) {
-    $cAdmin->newEmployee($_POST['nama'], $_POST['email'], $_POST['posisi'], $_POST['alamat'], $_POST['telp']);
+//Add Query
+if (isset($_POST['addUser'])) {
+    $add->addUser($_POST['addNama'], $_POST['addEmail'], $_POST['addPosisi'], $_POST['addAlamat'], $_POST['addTelp']);
 }
-if (isset($_POST['editEmployee'])) {
-    $cAdmin->editEmployee($_POST['edit-id'], $_POST['edit-nama'], $_POST['edit-email'], $_POST['edit-posisi'], $_POST['edit-alamat'], $_POST['edit-telp']);
+//Edit Query
+if (isset($_POST['editUser'])) {
+    $edit->editUser($_POST['editId'], $_POST['editNama'], $_POST['editEmail'], $_POST['editPosisi'], $_POST['editAlamat'], $_POST['editTelp']);
 }
-if (isset($_POST['deleteEmployee'])) {
-    $cAdmin->deleteEmployee($_POST['delete-id']);
+//Delete Query
+if (isset($_POST['deleteUser'])) {
+    $delete->deleteUser($_POST['deleteId']);
 }
-if (isset($_POST['salaryEmployee'])) {
-    $cAdmin->salaryEmployee($_POST['salary-id'], $_POST['salary-number']);
+//Extra Query
+if (isset($_POST['salaryUser'])) {
+    $extra->salaryUser($_POST['salaryId'], $_POST['salaryNumber']);
 }
 ?>
 
@@ -100,26 +103,26 @@ if (isset($_POST['salaryEmployee'])) {
         <div id="modal-addEmployee" class="addEmployee modal-container">
             <span>Tambah Karyawan Baru</span>
             <form method="post" autocomplete="off">
-                <label for="nama">Nama Lengkap Karyawan: </label>
-                <input type="text" name="nama" id="nama" placeholder="">
+                <label for="addNama">Nama Lengkap Karyawan: </label>
+                <input type="text" name="addNama" id="nama" placeholder="">
 
-                <label for="email">Email Karyawan: </label>
-                <input type="text" name="email" id="email" placeholder="">
+                <label for="addEmail">Email Karyawan: </label>
+                <input type="text" name="addEmail" id="email" placeholder="">
 
-                <label for="posisi">Posisi Karyawan:</label>
-                <select name="posisi" id="posisi">
+                <label for="addPosisi">Posisi Karyawan:</label>
+                <select name="addPosisi" id="posisi">
                     <option value="admin">Admin</option>
                     <option value="keuangan">Keuangan</option>
                     <option value="gudang">Gudang</option>
                 </select>
 
-                <label for="alamat">Alamat Karyawan:</label>
-                <input type="text" name="alamat" id="alamat" placeholder="">
+                <label for="addAlamat">Alamat Karyawan:</label>
+                <input type="text" name="addAlamat" id="alamat" placeholder="">
 
-                <label for="telp">Nomor Telepon Karyawan:</label>
-                <input type="number" name="telp" id="telp" placeholder="">
+                <label for="addTelp">Nomor Telepon Karyawan:</label>
+                <input type="number" name="addTelp" id="telp" placeholder="">
                 <br>
-                <button class="btn-ok" name="addEmployee">Submit</button>
+                <button class="btn-ok" name="addUser">Submit</button>
             </form>
             <button class="btn-no" onclick="closeModal('modal-addEmployee')">Batal</button>
         </div>
@@ -128,27 +131,27 @@ if (isset($_POST['salaryEmployee'])) {
         <div id="modal-editEmployee" class="editEmployee modal-container">
             <span>Ubah Data Karyawan</span>
             <form method="post" autocomplete="off">
-                <input type="hidden" name="edit-id" id="edit-id" value="">
-                <label for="edit-nama">Nama Lengkap Karyawan: </label>
-                <input type="text" name="edit-nama" id="edit-nama" placeholder="">
+                <input type="hidden" name="editId" id="edit-id" value="">
+                <label for="editNama">Nama Lengkap Karyawan: </label>
+                <input type="text" name="editNama" id="edit-nama" placeholder="">
 
-                <label for="edit-email">Email Karyawan: </label>
-                <input type="text" name="edit-email" id="edit-email" placeholder="">
+                <label for="editEmail">Email Karyawan: </label>
+                <input type="text" name="editEmail" id="edit-email" placeholder="">
 
-                <label for="edit-posisi">Posisi Karyawan:</label>
-                <select name="edit-posisi" id="edit-posisi">
+                <label for="editPosisi">Posisi Karyawan:</label>
+                <select name="editPosisi" id="edit-posisi">
                     <option value="admin">Admin</option>
                     <option value="keuangan">Keuangan</option>
                     <option value="gudang">Gudang</option>
                 </select>
 
-                <label for="edit-alamat">Alamat Karyawan:</label>
-                <input type="text" name="edit-alamat" id="edit-alamat" placeholder="">
+                <label for="editAlamat">Alamat Karyawan:</label>
+                <input type="text" name="editAlamat" id="edit-alamat" placeholder="">
 
-                <label for="edit-telp">Nomor Telepon Karyawan:</label>
-                <input type="text" name="edit-telp" id="edit-telp" placeholder="">
+                <label for="editTelp">Nomor Telepon Karyawan:</label>
+                <input type="text" name="editTelp" id="edit-telp" placeholder="">
                 <br>
-                <button class="btn-ok" name="editEmployee">Submit</button>
+                <button class="btn-ok" name="editUser">Submit</button>
             </form>
             <button class="btn-no" onclick="closeModal('modal-editEmployee')">Batal</button>
         </div>
@@ -157,9 +160,9 @@ if (isset($_POST['salaryEmployee'])) {
         <div id="modal-deleteEmployee" class="deleteEmployee modal-container">
             <span>Hapus Data Karyawan?</span>
             <form method="post">
-                <input type="hidden" name="delete-id" id="delete-id" value="">
+                <input type="hidden" name="deleteId" id="delete-id" value="">
                 <label>Apa anda yakin ingin menghapus data karyawan?</label>
-                <button class="btn-no" name="deleteEmployee">Hapus</button>
+                <button class="btn-no" name="deleteUser">Hapus</button>
             </form>
             <button class="btn-ok" onclick="closeModal('modal-deleteEmployee')">Batal</button>
         </div>
@@ -168,12 +171,12 @@ if (isset($_POST['salaryEmployee'])) {
         <div id="modal-salaryEmployee" class="salaryEmployee modal-container">
             <span>Ubah Gaji Karyawan</span>
             <form method="post" autocomplete="off">
-                <input type="hidden" name="salary-id" id="salary-id" value="">
-                <label for="gaji">Gaji Karyawan: </label>
+                <input type="hidden" name="salaryId" id="salary-id" value="">
+                <label for="salaryNumber">Gaji Karyawan: </label>
                 <p class="currency">IDR</p>
-                <input type="number" name="salary-number" id="salary-number" placeholder="">
+                <input type="number" name="salaryNumber" id="salary-number" placeholder="">
                 <br>
-                <button class="btn-ok" name="salaryEmployee">Submit</button>
+                <button class="btn-ok" name="salaryUser">Submit</button>
             </form>
             <button class="btn-no" onclick="closeModal('modal-salaryEmployee')">Batal</button>
         </div>

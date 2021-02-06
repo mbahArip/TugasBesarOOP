@@ -13,5 +13,5 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <title>Panel Indomaret</title>
+    <title><?= $pageName . ' :: Panel Indomaret' ?></title>
 </head>

@@ -1,6 +1,16 @@
 <?php
 require('m.php');
 
+class connectDatabase
+{
+
+    protected $db = null;
+
+    public function __construct()
+    {
+        return $this->db = new database();
+    }
+}
 
 class sessionCookie
 {
@@ -30,14 +40,8 @@ class sessionCookie
     }
 }
 
-class functionLogin
+class functionLogin extends connectDatabase
 {
-    protected $db = null;
-
-    public function __construct()
-    {
-        return $this->db = new database();
-    }
     public function logIn($id, $password)
     {
         $sql = "SELECT * FROM karyawan WHERE id_karyawan = '$id'";
@@ -75,99 +79,119 @@ class functionLogin
     }
 }
 
-class cAdmin
+class searchQuery extends connectDatabase
 {
-    protected $db = null;
+    public function userSearch($keyword)
+    {
+        $tag = explode(':', $keyword);
+        $search = trim($tag[1], ' ');
+        $sql = null;
 
-    public function __construct()
-    {
-        return $this->db = new database();
-    }
+        if ($tag[0] == 'id') {
+            $sql = "SELECT * FROM karyawan
+                WHERE
+                id_karyawan LIKE '%$search%'";
+        } elseif ($tag[0] == 'nama') {
+            $sql = "SELECT * FROM karyawan
+                WHERE
+                nama_karyawan LIKE '%$search%'";
+        } elseif ($tag[0] == 'email') {
+            $sql = "SELECT * FROM karyawan
+                WHERE
+                email_karyawan LIKE '%$search%'";
+        } elseif ($tag[0] == 'rank') {
+            $sql = "SELECT * FROM karyawan
+                WHERE
+                rank_karyawan LIKE '%$search%'";
+        } elseif ($tag[0] == 'telp') {
+            $sql = "SELECT * FROM karyawan
+                WHERE
+                telp_karyawan LIKE '%$search%'";
+        } elseif ($tag[0] == 'alamat') {
+            $sql = "SELECT * FROM karyawan
+                WHERE
+                alamat_karyawan LIKE '%$search%'";
+        } elseif ($tag[0] == 'gaji') {
+            $sql = "SELECT * FROM karyawan
+                WHERE
+                gaji_karyawan LIKE '%$search%'";
+        } else {
+            $sql = "SELECT * FROM karyawan 
+                WHERE 
+                id_karyawan LIKE '%$keyword%' OR 
+                nama_karyawan LIKE '%$keyword%' OR 
+                email_karyawan LIKE '%$keyword%' OR 
+                rank_karyawan LIKE '%$keyword%' OR 
+                alamat_karyawan LIKE '%$keyword%'";
+        }
 
-    //Notes
-    public function addNotes($notes, $id, $user)
-    {
-        $sql = "INSERT INTO notes (deskripsi, id_karyawan, nama_karyawan) VALUES('$notes', '$id', '$user')";
-        $this->db->query($sql);
-        header('Location: adminIndex');
-        exit;
-    }
-    public function editNotes($notes, $id)
-    {
-        $sql = "UPDATE notes SET deskripsi='$notes' WHERE id='$id'";
-        $this->db->query($sql);
-        header('Location: adminIndex');
-        exit;
-    }
-    public function deleteNotes($id)
-    {
-        $sql = "DELETE FROM notes WHERE id='$id'";
-        $this->db->query($sql);
-        header('Location: adminIndex');
-        exit;
-    }
-
-    //Employee
-    public function searchQuery($keyword)
-    {
-        $sql = "SELECT * FROM karyawan 
-        WHERE 
-        id_karyawan LIKE '%$keyword%' OR 
-        nama_karyawan LIKE '%$keyword%' OR 
-        email_karyawan LIKE '%$keyword%' OR 
-        rank_karyawan LIKE '%$keyword%' OR 
-        alamat_karyawan LIKE '%$keyword%'";
         $query = $this->db->query($sql);
         return $query;
     }
-    public function newEmployee($nama, $email, $posisi, $alamat, $telp)
-    {
-        $hashPassword = password_hash('indomaret', PASSWORD_DEFAULT);
-        $sql = "INSERT INTO karyawan (nama_karyawan, email_karyawan, password, rank_karyawan, alamat_karyawan, telp_karyawan) 
-        VALUES('$nama', '$email', '$hashPassword', '$posisi', '$alamat', '$telp')";
-        $this->db->query($sql);
-        header('Location: adminUser');
-        exit;
-    }
-    public function editEmployee($id, $nama, $email, $posisi, $alamat, $telp)
-    {
-        $sql = "UPDATE karyawan 
-        SET nama_karyawan='$nama', email_karyawan='$email', rank_karyawan='$posisi', alamat_karyawan='$alamat', telp_karyawan='$telp' 
-        WHERE id_karyawan='$id'";
-        $this->db->query($sql);
-        header('Location: adminUser');
-        exit;
-    }
-    public function deleteEmployee($id)
-    {
-        $sql = "DELETE FROM karyawan WHERE id_karyawan='$id'";
-        $this->db->query($sql);
-        header('Location: adminUser');
-        exit;
-    }
-    public function salaryEmployee($id, $gaji)
-    {
-        $sql = "UPDATE karyawan
-        SET gaji_karyawan='$gaji'
-        WHERE id_karyawan='$id'";
-        $this->db->query($sql);
-        header('Location: adminUser');
-        exit;
-    }
 
-    //Gudang
-
-    public function searchGudang($keyword)
+    public function itemSeach($keyword)
     {
-        $sql = "SELECT barang.id_barang, barang.nama_barang, barang.harga_barang, stok_barang.stok_barang
+        $tag = explode(':', $keyword);
+        $search = trim($tag[1], ' ');
+        $sql = null;
+
+        if ($tag[0] == 'id') {
+            $sql = "SELECT * FROM barang
+                WHERE
+                id_barang LIKE '%$search%'";
+        } elseif ($tag[0] == 'nama') {
+            $sql = "SELECT * FROM barang
+                WHERE
+                nama_barang LIKE '%$search%'";
+        } elseif ($tag[0] == 'harga') {
+            $sql = "SELECT * FROM barang
+                WHERE
+                harga_barang LIKE '%$search%'";
+        } elseif ($tag[0] == 'stok') {
+            $sql = "SELECT * FROM stok_barang
+                WHERE
+                stok_barang LIKE '%$search%'";
+        } else {
+            $sql = "SELECT barang.id_barang, barang.nama_barang, barang.harga_barang, stok_barang.stok_barang
         FROM barang INNER JOIN stok_barang ON barang.id_barang = stok_barang.id_barang
         WHERE
         barang.id_barang LIKE '%$keyword%' OR
-        barang.nama_barang LIKE '%$keyword%'";
+        barang.nama_barang LIKE '%$keyword%' OR
+        barang.harga_barang LIKE '%$keyword%' OR
+        stok_barang.stok_barang LIKE '%$keyword%'";
+        }
+
         $query = $this->db->query($sql);
         return $query;
     }
-    public function newBarang($id, $nama, $harga, $stok)
+}
+
+class addQuery extends connectDatabase
+{
+    public function addUser($nama, $email, $posisi, $alamat, $telp)
+    {
+        //Fetch Last ID
+        $last = "SELECT id_karyawan FROM karyawan ORDER BY id_karyawan DESC LIMIT 1";
+        $query = $this->db->query($last);
+        $fetchLast = mysqli_fetch_assoc($query);
+        $convertToString = $fetchLast['id_karyawan'];
+        $lastID = substr($convertToString, 5);
+        //Get Current Year and Month
+        $timeStamp = date("Ym");
+        //Combine Time and Last ID
+        $lastID = $timeStamp . $lastID;
+        //New ID
+        $newID = $lastID + 1;
+
+        //Insert to Database
+        $hashPassword = password_hash('indomaret', PASSWORD_DEFAULT);
+        $sql = "INSERT INTO karyawan (id_karyawan, nama_karyawan, email_karyawan, password, rank_karyawan, alamat_karyawan, telp_karyawan) 
+        VALUES('$newID', '$nama', '$email', '$hashPassword', '$posisi', '$alamat', '$telp')";
+        $this->db->query($sql);
+        header('Location: adminUser');
+    }
+
+    public function addItem($id, $nama, $harga, $stok)
     {
         $sqlBarang = "INSERT INTO barang (id_barang, nama_barang, harga_barang)
         VALUES ('$id', '$nama', '$harga')";
@@ -176,9 +200,28 @@ class cAdmin
         $this->db->query($sqlBarang);
         $this->db->query($sqlStok);
         header('Location: adminStorage');
-        exit;
     }
-    public function editBarang($id, $nama, $harga, $stok)
+
+    public function addNotes($notes, $id, $user)
+    {
+        $sql = "INSERT INTO notes (deskripsi, id_karyawan, nama_karyawan) VALUES('$notes', '$id', '$user')";
+        $this->db->query($sql);
+        header('Location: adminIndex');
+    }
+}
+
+class editQuery extends connectDatabase
+{
+    public function editUser($id, $nama, $email, $posisi, $alamat, $telp)
+    {
+        $sql = "UPDATE karyawan 
+        SET nama_karyawan='$nama', email_karyawan='$email', rank_karyawan='$posisi', alamat_karyawan='$alamat', telp_karyawan='$telp' 
+        WHERE id_karyawan='$id'";
+        $this->db->query($sql);
+        header('Location: adminUser');
+    }
+
+    public function editItem($id, $nama, $harga, $stok)
     {
         $sql = "UPDATE barang, stok_barang
         SET nama_barang = '$nama', harga_barang = '$harga', stok_barang.stok_barang = '$stok'
@@ -187,9 +230,26 @@ class cAdmin
         AND barang.id_barang = '$id'";
         $this->db->query($sql);
         header('Location: adminStorage');
-        exit;
     }
-    public function deleteBarang($id)
+
+    public function editNotes($notes, $id)
+    {
+        $sql = "UPDATE notes SET deskripsi='$notes' WHERE id='$id'";
+        $this->db->query($sql);
+        header('Location: adminIndex');
+    }
+}
+
+class deleteQuery extends connectDatabase
+{
+    public function deleteUser($id)
+    {
+        $sql = "DELETE FROM karyawan WHERE id_karyawan='$id'";
+        $this->db->query($sql);
+        header('Location: adminUser');
+    }
+
+    public function deleteItem($id)
     {
         $sql = "DELETE barang, stok_barang
         FROM barang
@@ -198,15 +258,42 @@ class cAdmin
         WHERE barang.id_barang = '$id'";
         $this->db->query($sql);
         header('Location: adminStorage');
-        exit;
     }
-    public function reqBarang($id, $nama, $harga, $qty, $desc)
+
+    public function deleteNotes($id)
+    {
+        $sql = "DELETE FROM notes WHERE id='$id'";
+        $this->db->query($sql);
+        header('Location: adminIndex');
+    }
+}
+
+class extraQuery extends connectDatabase
+{
+    public function salaryUser($id, $gaji)
+    {
+        $sql = "UPDATE karyawan
+        SET gaji_karyawan='$gaji'
+        WHERE id_karyawan='$id'";
+        $this->db->query($sql);
+        header('Location: adminUser');
+    }
+    public function requestItem($id, $nama, $harga, $qty, $desc)
     {
         $sql = "INSERT INTO request_barang (id_barang, nama_barang, harga_barang, qty_barang, deskripsi)
         VALUES ('$id', '$nama', '$harga', '$qty', '$desc')";
         $this->db->query($sql);
         header('Location: adminStorage');
-        exit;
+    }
+}
+
+class cAdmin
+{
+    protected $db = null;
+
+    public function __construct()
+    {
+        return $this->db = new database();
     }
 
     //Keuangan

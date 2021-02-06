@@ -655,7 +655,7 @@ body {
 }
 
 .admin-dash .grid-wrapper .grafik-penjualan {
-  height: 40vh;
+  height: 45vh;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
   grid-column: 1/3;
