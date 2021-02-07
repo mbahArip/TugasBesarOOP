@@ -1,32 +1,29 @@
 <?php
+$pageName = 'Laporan Keuangan';
 include 'layout/header.php';
 require 'function/c.php';
+require 'function/function.php';
 
 session_start();
-
-$sc = new sessionCookie();
 
 $sc->_checkSession('login');
 $condition = password_verify('admin', $_COOKIE['session']) == false && password_verify('debug', $_COOKIE['session']) == false && password_verify('superAdmin', $_COOKIE['session']) == false;
 $sc->_checkRank($condition);
 
-$arrayHari = array(rand(10, 100), rand(10, 100));
-$arrayBulan = array(
-    rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100),
-    rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100),
-    rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100),
-    rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100),
-    rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100),
-    rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100)
-);
+if (isset($_POST['range'])) {
+    $range = $_POST['range'];
 
-$cAdmin = new cAdmin();
-$vAdmin = new vAdmin();
-
-$json = $cAdmin->processData();
-$lapKeu = $vAdmin->showKeu();
-$sumIn = mysqli_fetch_assoc($vAdmin->sum('uangMasuk', 'lapkeuangan'));
-$sumOut = mysqli_fetch_assoc($vAdmin->sum('uangKeluar', 'lapkeuangan'));
+    $date = explode('-', $range);
+    $month = $date[1];
+    $year = $date[0];
+} else {
+    $month = date('m');
+    $year = date('Y');
+}
+$json = $keuangan->transactionDataToChart($month, $year);
+$lapKeu = $vAdmin->showKeu($month, $year);
+$sumIn = mysqli_fetch_assoc($vAdmin->sum('uangMasuk', 'lapkeuangan', $month, $year));
+$sumOut = mysqli_fetch_assoc($vAdmin->sum('uangKeluar', 'lapkeuangan', $month, $year));
 ?>
 
 <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
@@ -38,24 +35,19 @@ $sumOut = mysqli_fetch_assoc($vAdmin->sum('uangKeluar', 'lapkeuangan'));
     include 'layout/sidebar.php';
     ?>
 
+
     <!-- Content -->
     <div class="admin-keuangan content">
         <div class="grid-wrapper">
-            <!-- Chart Perhari -->
-            <!-- <div class="chart-hari grid-card"> -->
-            <!-- Card Title -->
-            <!-- <div class="card-info">
-                    <span>Pendapatan hari ini <i class="material-icons">insert_chart</i></span>
-                </div> -->
-            <!-- Chart -->
-            <!-- <div id="adminKeuChartHari" class="chartContainer"></div> -->
-            <!-- </div> -->
-
             <!-- Chart Perbulan -->
             <div class="chart-bulan grid-card">
                 <!-- Card Title -->
                 <div class="card-info">
                     <span>Pendapatan bulan ini <i class="material-icons">insert_chart</i></span>
+                    <form method="post" id="range">
+                        <input type="month" name="range" min="2021-01" value="">
+                        <button>Filter</button>
+                    </form>
                 </div>
                 <!-- Chart -->
                 <div id="adminKeuChartBulan" class="chartContainer"></div>
@@ -124,6 +116,9 @@ $sumOut = mysqli_fetch_assoc($vAdmin->sum('uangKeluar', 'lapkeuangan'));
             jsonPendapatan.push(jsonTest[jsonTanggal[i]]['pemasukan']);
         }
         adminDash(jsonPendapatan, jsonTanggal, 'adminKeuChartBulan', 'Pendapatan dalam IDR');
+
+        const monthControl = document.querySelector('input[type="month"]');
+        monthControl.value = '<?= $year . '-' . $month ?>'
     </script>
 
 </body>

@@ -1,16 +1,12 @@
 <?php
+$pageName = 'Dashboard';
 include 'layout/header.php';
-// include 'layout/loading.php';
 require 'function/c.php';
+require 'function/function.php';
+// include 'layout/loading.php';
 
 session_start();
 
-//Declare
-$sc = new sessionCookie();
-$vAdmin = new vAdmin();
-$cAdmin = new cAdmin();
-
-//Check Session and Cookie
 $sc->_checkSession('login');
 $condition = password_verify('admin', $_COOKIE['session']) == false && password_verify('debug', $_COOKIE['session']) == false && password_verify('superAdmin', $_COOKIE['session']) == false;
 $sc->_checkRank($condition);
@@ -20,19 +16,19 @@ $dataNewEmployee = $vAdmin->showNewEmployee();
 $dataNotes = $vAdmin->showNotes();
 
 //Chart Data
-$dataChart = $cAdmin->processData();
+$dataChart = $keuangan->transactionDataToChart();
 
 //Get Notes form
 if (isset($_POST['notes'])) {
-    $cAdmin->addNotes($_POST['notes'], $_COOKIE['id'], $_COOKIE['nama']);
+    $add->addNotes($_POST['notes'], $_COOKIE['id'], $_COOKIE['nama']);
 }
 //Update Notes
 if (isset($_POST['edit-notes'])) {
-    $cAdmin->editNotes($_POST['edit-notes'], $_POST['edit-notesID']);
+    $edit->editNotes($_POST['edit-notes'], $_POST['edit-notesID']);
 }
 //Delete Notes
 if (isset($_POST['delete-notesID'])) {
-    $cAdmin->deleteNotes($_POST['delete-notesID']);
+    $delete->deleteNotes($_POST['delete-notesID']);
 }
 ?>
 

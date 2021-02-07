@@ -1004,25 +1004,6 @@ body {
   font-weight: 700;
 }
 
-.admin-keuangan .grid-wrapper .chart-hari {
-  height: 40vh;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 1;
-  grid-column: 1/2;
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 1;
-  grid-row: 1/2;
-}
-
-.admin-keuangan .grid-wrapper .chart-hari .chartContainer {
-  width: 98%;
-  height: 30vh;
-  display: block;
-  margin: 0 auto;
-  position: relative;
-  top: 1rem;
-}
-
 .admin-keuangan .grid-wrapper .chart-bulan {
   height: 40vh;
   -ms-grid-column: 1;
@@ -1031,6 +1012,44 @@ body {
   -ms-grid-row: 1;
   -ms-grid-row-span: 1;
   grid-row: 1/2;
+}
+
+.admin-keuangan .grid-wrapper .chart-bulan .card-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.admin-keuangan .grid-wrapper .chart-bulan .card-info input[type=month] {
+  width: 256px;
+  height: 36px;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 5px;
+  border: .5px solid black;
+  outline: none;
+  padding: 5px;
+}
+
+.admin-keuangan .grid-wrapper .chart-bulan .card-info button {
+  width: 128px;
+  height: 36px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-weight: 600;
+  font-size: 16px;
+  background-color: #1A6AAE;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.admin-keuangan .grid-wrapper .chart-bulan .card-info button:hover {
+  background-color: #164C78;
+  color: #F7F7FC;
 }
 
 .admin-keuangan .grid-wrapper .chart-bulan .chartContainer {

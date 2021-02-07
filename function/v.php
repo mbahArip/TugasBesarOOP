@@ -41,17 +41,19 @@ class vAdmin
     }
 
     //Keuangan
-    public function showKeu()
+    public function showKeu($month, $year)
     {
         $sql = "SELECT * FROM lapkeuangan
-        WHERE MONTH(tanggal) = MONTH(now())";
+        WHERE MONTH(tanggal) = $month AND
+        YEAR(tanggal) = $year";
         $query = $this->db->query($sql);
         return $query;
     }
-    public function sum(String $column, String $table)
+    public function sum(String $column, String $table, $month, $year)
     {
         $sql = "SELECT SUM($column) FROM $table
-        WHERE MONTH(tanggal) = MONTH(now())";
+        WHERE MONTH(tanggal) = $month AND
+        YEAR(tanggal) = $year";
         $query = $this->db->query($sql);
         return $query;
     }

@@ -287,24 +287,18 @@ class extraQuery extends connectDatabase
     }
 }
 
-class cAdmin
+class keuangan extends connectDatabase
 {
-    protected $db = null;
-
-    public function __construct()
+    public function transactionDataToChart($month, $year)
     {
-        return $this->db = new database();
-    }
-
-    //Keuangan
-    public function processData()
-    {
+        //Get Data from Database
         $sql = "SELECT
         transaksi.id_transaksi, tanggal_transaksi, detail_transaksi.id_karyawan, detail_transaksi.id_barang, detail_transaksi.qty_barang, detail_transaksi.total_harga
         FROM transaksi
         INNER JOIN detail_transaksi
         ON transaksi.id_transaksi = detail_transaksi.id_transaksi
-        WHERE MONTH(tanggal_transaksi) = MONTH(now())";
+        WHERE MONTH(tanggal_transaksi) = $month AND
+        YEAR(tanggal_transaksi) = $year";
         $result = $this->db->query($sql);
 
         //Check Data
@@ -320,11 +314,13 @@ class cAdmin
             }
         }
 
+        //Create Array
         $output = array();
         foreach ($data as $d) {
             $date = date("d-F-Y", strtotime($d['tanggal_transaksi']));
             $output[$date]['pemasukan'] += $d['total'];
         }
+        //Encode to JSON
         $json = json_encode($output, JSON_PRETTY_PRINT);
         return $json;
     }
