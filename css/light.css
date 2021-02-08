@@ -666,7 +666,7 @@ body {
 
 .admin-dash .grid-wrapper .grafik-penjualan .chartContainer {
   width: 98%;
-  height: 30vh;
+  height: 35vh;
   display: block;
   margin: 0 auto;
   position: relative;
@@ -1466,6 +1466,14 @@ body {
 
 .user-setting .grid-wrapper .setting table input[type="text"]:focus, .user-setting .grid-wrapper .setting table input[type="password"]:focus, .user-setting .grid-wrapper .setting table textarea:focus {
   border: 0.5px solid #164C78;
+}
+
+.user-setting .grid-wrapper .setting label {
+  text-align: end;
+  margin: 0 2rem 1rem auto;
+  font-size: 20px;
+  font-weight: bold;
+  color: red;
 }
 
 .user-setting .grid-wrapper .setting button {

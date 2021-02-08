@@ -16,14 +16,22 @@ if (isset($_POST['range'])) {
     $date = explode('-', $range);
     $month = $date[1];
     $year = $date[0];
+    $gajiTime = 'last day of ' . date("F", mktime(0, 0, 0, $month, 10));
 } else {
     $month = date('m');
     $year = date('Y');
 }
 $json = $keuangan->transactionDataToChart($month, $year);
 $lapKeu = $vAdmin->showKeu($month, $year);
-$sumIn = mysqli_fetch_assoc($vAdmin->sum('uangMasuk', 'lapkeuangan', $month, $year));
-$sumOut = mysqli_fetch_assoc($vAdmin->sum('uangKeluar', 'lapkeuangan', $month, $year));
+//Total Uang Masuk dari Database
+$sumIn = intval(implode($vAdmin->sum('uangMasuk', 'lapkeuangan', $month, $year)));
+//Total Uang Keluar dari Database
+$sumOut = intval(implode($vAdmin->sum('uangKeluar', 'lapkeuangan', $month, $year)));
+//Total Gaji Karyawan
+$gajiBulanan = intval(implode($extra->getMonthlySalary()));
+//Total
+$totalUangKeluar = $sumOut + $gajiBulanan;
+$totalKeuntungan = $sumIn - $totalUangKeluar;
 ?>
 
 <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
@@ -90,14 +98,19 @@ $sumOut = mysqli_fetch_assoc($vAdmin->sum('uangKeluar', 'lapkeuangan', $month, $
                         </tbody>
                         <tfoot>
                             <tr>
+                                <td style="text-align: center;"><?= date("Y-m-j", strtotime("last day of " . $gajiTime)); ?></td>
+                                <td>Gaji Karyawan</td>
+                                <td>IDR 0</td>
+                                <td><?= 'IDR ' . $gajiBulanan; ?></td>
+                            </tr>
+                            <tr>
                                 <td colspan="2" style="text-align: end; font-weight: bold;">Total</td>
-                                <td style="text-align: end; font-weight: bold;"><?= 'IDR ' . implode($sumIn); ?></td>
-                                <td style="text-align: end; font-weight: bold;"><?= 'IDR ' . implode($sumOut); ?></td>
+                                <td style="text-align: end; font-weight: bold;"><?= 'IDR ' . $sumIn; ?></td>
+                                <td style="text-align: end; font-weight: bold;"><?= 'IDR ' . $totalUangKeluar; ?></td>
                             </tr>
                             <tr>
                                 <td colspan="2" style="text-align: end; font-weight: bold;">Total Keuntungan (Uang Masuk - Uang Keluar)</td>
-                                <td style="text-align: end; font-weight: bold;"><?php $sum = implode($sumIn) - implode($sumOut);
-                                                                                echo  'IDR ' . $sum; ?></td>
+                                <td style="text-align: end; font-weight: bold;"><?= 'IDR ' . $totalKeuntungan; ?></td>
                             </tr>
                         </tfoot>
                     </table>

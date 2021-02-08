@@ -374,7 +374,7 @@ body {
     }
 }
 
-//Admin Dashboard
+//Content
 .content {
     width: 80vw;
     height: 100vh;
@@ -563,7 +563,7 @@ body {
 
     & .chartContainer {
         width: 98%;
-        height: 30vh;
+        height: 35vh;
 
         display: block;
         margin: 0 auto;
@@ -1276,6 +1276,14 @@ body {
         }
     }
 
+    & label {
+        text-align: end;
+        margin: 0 2rem 1rem auto;
+        font-size: 20px;
+        font-weight: bold;
+
+        color: red;
+    }
     & button {
         width: 18vw;
         height: 48px;

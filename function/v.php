@@ -55,6 +55,7 @@ class vAdmin
         WHERE MONTH(tanggal) = $month AND
         YEAR(tanggal) = $year";
         $query = $this->db->query($sql);
-        return $query;
+        $result = mysqli_fetch_assoc($query);
+        return $result;
     }
 }

@@ -16,7 +16,9 @@ $dataNewEmployee = $vAdmin->showNewEmployee();
 $dataNotes = $vAdmin->showNotes();
 
 //Chart Data
-$dataChart = $keuangan->transactionDataToChart();
+$month = date('m');
+$year = date('Y');
+$dataChart = $keuangan->transactionDataToChart($month, $year);
 
 //Get Notes form
 if (isset($_POST['notes'])) {

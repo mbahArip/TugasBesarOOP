@@ -10,3 +10,4 @@ $delete = new deleteQuery();
 $extra = new extraQuery();
 
 $keuangan = new keuangan();
+$settings = new userSettings();

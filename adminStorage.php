@@ -1,12 +1,10 @@
 <?php
+$pageName = 'Gudang';
 include 'layout/header.php';
 require 'function/c.php';
+require 'function/function.php';
 
 session_start();
-
-$sc = new sessionCookie();
-$cAdmin = new cAdmin();
-$vAdmin = new vAdmin();
 
 $sc->_checkSession('login');
 $condition = password_verify('admin', $_COOKIE['session']) == false && password_verify('debug', $_COOKIE['session']) == false && password_verify('superAdmin', $_COOKIE['session']) == false;
@@ -15,19 +13,19 @@ $sc->_checkRank($condition);
 $dataBarang = $vAdmin->showStorage();
 
 if (isset($_POST['searchQuery'])) {
-    $dataBarang = $cAdmin->searchGudang($_POST['searchQuery']);
+    $dataBarang = $search->itemSeach($_POST['searchQuery']);
 }
 if (isset($_POST['addBarang'])) {
-    $dataBarang = $cAdmin->newBarang($_POST['id-barang'], $_POST['nama-barang'], $_POST['harga-barang'], $_POST['stok-barang']);
+    $dataBarang = $add->addItem($_POST['id-barang'], $_POST['nama-barang'], $_POST['harga-barang'], $_POST['stok-barang']);
 }
 if (isset($_POST['editBarang'])) {
-    $dataBarang = $cAdmin->editBarang($_POST['edit-id'], $_POST['edit-nama'], $_POST['edit-harga'], $_POST['edit-stok']);
+    $dataBarang = $edit->editItem($_POST['edit-id'], $_POST['edit-nama'], $_POST['edit-harga'], $_POST['edit-stok']);
 }
 if (isset($_POST['deleteBarang'])) {
-    $dataBarang = $cAdmin->deleteBarang($_POST['delete-id']);
+    $dataBarang = $delete->deleteItem($_POST['delete-id']);
 }
 if (isset($_POST['requestBarang'])) {
-    $dataBarang = $cAdmin->reqBarang($_POST['req-id'], $_POST['req-nama'], $_POST['req-harga'], $_POST['req-qty'], $_POST['req-desc']);
+    $dataBarang = $extra->requestItem($_POST['req-id'], $_POST['req-nama'], $_POST['req-harga'], $_POST['req-qty'], $_POST['req-desc']);
 }
 ?>
 
@@ -101,7 +99,12 @@ if (isset($_POST['requestBarang'])) {
             <span>Tambah Barang</span>
             <form method="post" autocomplete="off">
                 <label for="id-barang">ID Barang: </label>
-                <input type="text" name="id-barang" id="id-barang" placeholder="">
+                <select name="id-barang" id="id-barang">
+                    <option value="D">Minuman</option>
+                    <option value="F">Makanan</option>
+                    <option value="G">Kebutuhan Rumah Tangga</option>
+                    <option value="DIGI">Produk Digital</option>
+                </select>
 
                 <label for="nama-barang">Nama Barang: </label>
                 <input type="text" name="nama-barang" id="nama-barang" placeholder="">

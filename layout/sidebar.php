@@ -47,8 +47,11 @@
 
     <!-- User Info -->
     <div class="user-info">
+        <?php
+        $userData = $settings->getData($_COOKIE['id']);
+        ?>
         <!-- Avatar -->
-        <img src="assets\avatar\ava.png" alt=""><br>
+        <img src="<?= 'assets\avatar/' . $userData['avatar_karyawan']; ?>" alt=""><br>
 
         <!-- Info -->
         <label class="nama"><?= $_COOKIE['nama']; ?></label><br>

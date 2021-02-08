@@ -1,14 +1,19 @@
 <?php
+$pageName = 'User Settings';
 include 'layout/header.php';
 require 'function/c.php';
+require 'function/function.php';
 
 session_start();
-
-$sc = new sessionCookie();
 
 $sc->_checkSession('login');
 $condition = password_verify('admin', $_COOKIE['session']) == false && password_verify('debug', $_COOKIE['session']) == false && password_verify('superAdmin', $_COOKIE['session']) == false && password_verify('keuangan', $_COOKIE['session']) == false && password_verify('gudang', $_COOKIE['session']) == false;
 $sc->_checkRank($condition);
+$error = null;
+
+if (isset($_POST['settingUpdate'])) {
+    $settings->updateData($_COOKIE['id'], $_POST['settingNama'], $_POST['settingEmail'], $_POST['settingAlamat'], $_POST['settingOldPass'], $_POST['settingNewPass'], $_POST['settingNewPass2'], $_POST['settingTelp']);
+}
 ?>
 
 <script src='assets\js\app.js'></script>
@@ -33,17 +38,16 @@ $sc->_checkRank($condition);
                     <tbody>
                         <tr>
                             <!-- Form Upload Photo -->
-                            <form>
+                            <form action="upload" method="post" enctype="multipart/form-data">
                                 <td class="settingPhoto">
                                     <h2>Ubah Photo</h2>
-                                    <img src="assets\avatar\ava.png" alt=""><br>
-                                    <input type="file" accept="image/*" id="settingUpload" name="settingUpload" required="required">
-                                    <button class="btn-upload">Upload</button>
-
+                                    <img src="<?= 'assets\avatar/' . $userData['avatar_karyawan']; ?>" alt=""><br>
+                                    <input type="file" accept="image/*" id="settingUpload" name="image" required="required">
+                                    <button class="btn-upload" name="imageUpdate">Upload</button>
                                 </td>
                             </form>
                             <!-- Form Data -->
-                            <form>
+                            <form method="post">
                                 <td class="inputLeft">
                                     <h2>Nama Lengkap</h2>
                                     <input type="text" id="settingNama" name="settingNama" readonly><br>
@@ -54,7 +58,7 @@ $sc->_checkRank($condition);
                                 </td>
                                 <td class="inputRight">
                                     <h2>Password Lama</h2>
-                                    <input type="password" id="settingOldPass" name="settingOldPass"><br>
+                                    <input type="password" id="settingOldPass" name="settingOldPass" onfocusout="password()"><br>
                                     <h2>Password Baru</h2>
                                     <input type="password" id="settingNewPass" name="settingNewPass"><br>
                                     <h2>Konfirmasi</h2>
@@ -65,9 +69,32 @@ $sc->_checkRank($condition);
                         </tr>
                     </tbody>
                 </table>
-                <button>Simpan</button>
+                <?php if ($error == 'oldPass') : ?>
+                    <label>Error! Password Lama tidak sama!</label>
+                <?php elseif ($error == 'newPass') : ?>
+                    <label>Error! Password Baru tidak sama!</label>
+                <?php elseif ($error == 'null') : ?>
+                    <label style="color: green !important;">Data berhasil diubah!</label>
+                <?php endif; ?>
+                <button name="settingUpdate">Simpan</button>
                 </form>
                 <!-- Get data from database -->
+                <script>
+                    document.getElementById('settingNama').value = '<?= $userData['nama_karyawan']; ?>'
+                    document.getElementById('settingEmail').value = '<?= $userData['email_karyawan']; ?>'
+                    document.getElementById('settingAlamat').value = '<?= $userData['alamat_karyawan']; ?>'
+                    document.getElementById('settingTelp').value = '<?= $userData['telp_karyawan']; ?>'
+
+                    function password() {
+                        if (document.getElementById('settingOldPass').value != '') {
+                            document.getElementById('settingNewPass').setAttribute('required', 'required')
+                            document.getElementById('settingNewPass2').setAttribute('required', 'required')
+                        } else {
+                            document.getElementById('settingNewPass').removeAttribute('required')
+                            document.getElementById('settingNewPass2').removeAttribute('required')
+                        }
+                    }
+                </script>
             </div>
         </div>
     </div>

@@ -193,10 +193,22 @@ class addQuery extends connectDatabase
 
     public function addItem($id, $nama, $harga, $stok)
     {
+        //Fetch Last ID
+        $last = "SELECT id_barang FROM barang WHERE id_barang LIKE '$id%' ORDER BY id_barang DESC LIMIT 1";
+        $query = $this->db->query($last);
+        $fetchLast = mysqli_fetch_assoc($query);
+        $convertToString = $fetchLast['id_barang'];
+        $lastID = substr($convertToString, 2);
+        $IDwithoutCategory = $lastID + 1;
+        //Combine with Category
+        $newID = $id . '-' . $IDwithoutCategory;
+        echo $newID;
+
+        //Insert to Database
         $sqlBarang = "INSERT INTO barang (id_barang, nama_barang, harga_barang)
-        VALUES ('$id', '$nama', '$harga')";
+        VALUES ('$newID', '$nama', '$harga')";
         $sqlStok = "INSERT INTO stok_barang (id_barang, stok_barang)
-        VALUES ('$id', '$stok')";
+        VALUES ('$newID', '$stok')";
         $this->db->query($sqlBarang);
         $this->db->query($sqlStok);
         header('Location: adminStorage');
@@ -285,6 +297,13 @@ class extraQuery extends connectDatabase
         $this->db->query($sql);
         header('Location: adminStorage');
     }
+    public function getMonthlySalary()
+    {
+        $sql = "SELECT SUM(gaji_karyawan) FROM karyawan";
+        $query = $this->db->query($sql);
+        $result = mysqli_fetch_assoc($query);
+        return $result;
+    }
 }
 
 class keuangan extends connectDatabase
@@ -323,6 +342,57 @@ class keuangan extends connectDatabase
         //Encode to JSON
         $json = json_encode($output, JSON_PRETTY_PRINT);
         return $json;
+    }
+}
+
+class userSettings extends connectDatabase
+{
+    public function uploadAvatar($id, $fileName)
+    {
+        $sql = "UPDATE karyawan
+                    SET avatar_karyawan='$fileName'
+                    WHERE id_karyawan='$id'";
+        $this->db->query($sql);
+        header('Location: settings');
+    }
+    public function getData($id)
+    {
+        $sql = "SELECT * FROM karyawan
+        WHERE id_karyawan ='$id'";
+        $query = $this->db->query($sql);
+        $result = mysqli_fetch_assoc($query);
+        return $result;
+    }
+
+    public function updateData($id, $nama, $email, $alamat, $oldPass, $newPass, $newPass2, $telp)
+    {
+        global $error;
+        if ($oldPass != '') {
+            $sqlOldPass = "SELECT password FROM karyawan WHERE id_karyawan = '$id'";
+            $queryOldPass = $this->db->query($sqlOldPass);
+            $resultOldPass = mysqli_fetch_assoc($queryOldPass);
+
+            if (password_verify($oldPass, $resultOldPass['password']) == 1) {
+                if ($newPass == $newPass2) {
+                    $passwordHash = password_hash($newPass, PASSWORD_DEFAULT);
+                    $sql = "UPDATE karyawan
+                    SET nama_karyawan='$nama', email_karyawan='$email', alamat_karyawan='$alamat', telp_karyawan='$telp', password='$passwordHash'
+                    WHERE id_karyawan='$id'";
+                    $this->db->query($sql);
+                    $error = 'null';
+                } else {
+                    $error = 'newPass';
+                }
+            } else {
+                $error = 'oldPass';
+            }
+        } else {
+            $sql = "UPDATE karyawan
+                    SET nama_karyawan='$nama', email_karyawan='$email', alamat_karyawan='$alamat', telp_karyawan='$telp'
+                    WHERE id_karyawan='$id'";
+            $this->db->query($sql);
+            header('Location: settings');
+        }
     }
 }
 
