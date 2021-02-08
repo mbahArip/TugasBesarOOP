@@ -34,7 +34,7 @@ if (isset($_POST['salaryUser'])) {
 }
 ?>
 
-<script src='assets\js\app.js'></script>
+<!-- <script src='assets\js\app.js'></script> -->
 
 <body onload="selectedMenu('adminUser')">
     <!-- Sidebar -->

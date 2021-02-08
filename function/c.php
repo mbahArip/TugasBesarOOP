@@ -282,6 +282,7 @@ class deleteQuery extends connectDatabase
 
 class extraQuery extends connectDatabase
 {
+
     public function salaryUser($id, $gaji)
     {
         $sql = "UPDATE karyawan
@@ -391,7 +392,6 @@ class userSettings extends connectDatabase
                     SET nama_karyawan='$nama', email_karyawan='$email', alamat_karyawan='$alamat', telp_karyawan='$telp'
                     WHERE id_karyawan='$id'";
             $this->db->query($sql);
-            header('Location: settings');
         }
     }
 }

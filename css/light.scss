@@ -329,6 +329,24 @@ body {
     color: $col-bg !important;
 }
 
+//Label
+.success {
+    padding: .5rem;
+    border-radius: 5px;
+
+    color: $col-level1;
+    background-color: #4BB543;
+    font-weight: bold;
+}
+.failed {
+    padding: .5rem;
+    border-radius: 5px;
+
+    color: $col-level1;
+    background-color: #FC100D;
+    font-weight: bold;
+}
+
 //Modal
 .modal {
     width: 100vw;
@@ -724,7 +742,7 @@ body {
     }
     & .table table {
         width: calc(95% - 1px);
-        height: 70vh;
+        height: 75vh;
 
         & .table-action {
             text-align: center;
@@ -1277,12 +1295,10 @@ body {
     }
 
     & label {
-        text-align: end;
-        margin: 0 2rem 1rem auto;
+        text-align: center;
+        margin: auto auto 1rem auto;
         font-size: 20px;
         font-weight: bold;
-
-        color: red;
     }
     & button {
         width: 18vw;

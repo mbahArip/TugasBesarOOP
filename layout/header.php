@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="assets\favicon.ico">
 
     <!-- CSS File -->
     <link rel="stylesheet" type="text/css" href="css/light.css" id="theme">
@@ -15,3 +16,5 @@
 
     <title><?= $pageName . ' :: Panel Indomaret' ?></title>
 </head>
+
+<script src='assets\js\app.js'></script>

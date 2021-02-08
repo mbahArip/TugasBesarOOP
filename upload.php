@@ -1,4 +1,6 @@
 <?php
+$pageName = 'Upload';
+include 'layout/header.php';
 require 'function/c.php';
 require 'function/function.php';
 

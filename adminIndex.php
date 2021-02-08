@@ -34,7 +34,6 @@ if (isset($_POST['delete-notesID'])) {
 }
 ?>
 
-<script src='assets\js\app.js'></script>
 <!-- <script src='assets\js\loading.js'></script> -->
 <script src="assets\js\chart.js"></script>
 

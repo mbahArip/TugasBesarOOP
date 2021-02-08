@@ -16,8 +16,6 @@ if (isset($_POST['settingUpdate'])) {
 }
 ?>
 
-<script src='assets\js\app.js'></script>
-
 <body onload="selectedMenu('userSetting')">
     <!-- Sidebar -->
     <?php
@@ -33,6 +31,13 @@ if (isset($_POST['settingUpdate'])) {
                 <div class="card-info">
                     <span>User Settings <i class="material-icons">manage_accounts</i></span><br>
                 </div>
+                <?php if ($error == 'oldPass') : ?>
+                    <label class="failed">Error! Password Lama tidak sama!</label>
+                <?php elseif ($error == 'newPass') : ?>
+                    <label class="failed">Error! Password Baru tidak sama!</label>
+                <?php elseif ($error == 'null') : ?>
+                    <label class="success">Data berhasil diubah!</label>
+                <?php endif; ?>
                 <!-- Setting Form -->
                 <table>
                     <tbody>
@@ -69,13 +74,6 @@ if (isset($_POST['settingUpdate'])) {
                         </tr>
                     </tbody>
                 </table>
-                <?php if ($error == 'oldPass') : ?>
-                    <label>Error! Password Lama tidak sama!</label>
-                <?php elseif ($error == 'newPass') : ?>
-                    <label>Error! Password Baru tidak sama!</label>
-                <?php elseif ($error == 'null') : ?>
-                    <label style="color: green !important;">Data berhasil diubah!</label>
-                <?php endif; ?>
                 <button name="settingUpdate">Simpan</button>
                 </form>
                 <!-- Get data from database -->

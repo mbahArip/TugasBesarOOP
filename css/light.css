@@ -384,6 +384,22 @@ body {
   color: #F7F7FC !important;
 }
 
+.success {
+  padding: .5rem;
+  border-radius: 5px;
+  color: #ffffff;
+  background-color: #4BB543;
+  font-weight: bold;
+}
+
+.failed {
+  padding: .5rem;
+  border-radius: 5px;
+  color: #ffffff;
+  background-color: #FC100D;
+  font-weight: bold;
+}
+
 .modal {
   width: 100vw;
   height: 100vh;
@@ -855,7 +871,7 @@ body {
 
 .admin-user .grid-wrapper .employee-list .table table {
   width: calc(95% - 1px);
-  height: 70vh;
+  height: 75vh;
 }
 
 .admin-user .grid-wrapper .employee-list .table table .table-action {
@@ -1469,11 +1485,10 @@ body {
 }
 
 .user-setting .grid-wrapper .setting label {
-  text-align: end;
-  margin: 0 2rem 1rem auto;
+  text-align: center;
+  margin: auto auto 1rem auto;
   font-size: 20px;
   font-weight: bold;
-  color: red;
 }
 
 .user-setting .grid-wrapper .setting button {
