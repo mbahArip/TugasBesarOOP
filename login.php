@@ -1,4 +1,5 @@
 <?php
+$pageName = 'Login';
 require 'layout/header.php';
 require 'function/c.php';
 
@@ -30,10 +31,10 @@ if (isset($_POST['string'])) {
 
 ?>
 <!-- BCRYPT Generator -->
-<form name='generator' method='post'>
+<!-- <form name='generator' method='post'>
     <input type="text" name="string" id="string">
     <button type="submit">Generate</button>
-</form>
+</form> -->
 
 <body>
 

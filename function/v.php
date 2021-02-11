@@ -39,6 +39,37 @@ class vAdmin
         $query = $this->db->query($sql);
         return $query;
     }
+    public function showEmpty()
+    {
+        // $sql = "SELECT barang.id_barang, barang.nama_barang
+        // FROM barang INNER JOIN stok_barang ON barang.id_barang = stok_barang.id_barang
+        // WHERE stok_barang.stok_barang = 0";
+        $sql = "SELECT * FROM barang INNER JOIN stok_barang ON barang.id_barang = stok_barang.id_barang
+        WHERE stok_barang = 0 AND
+        barang.id_barang NOT IN ( SELECT id_barang FROM request_barang )";
+        $query = $this->db->query($sql);
+        return $query;
+    }
+    public function showRequest()
+    {
+        $sql = "SELECT * FROM request_barang
+        WHERE status = 0 OR
+        status = 1 OR
+        status = 2 OR
+        status = 3 OR
+        status = 4
+        ORDER BY id_request DESC";
+        $query = $this->db->query($sql);
+        return $query;
+    }
+    public function showConfirm()
+    {
+        $sql = "SELECT * FROM request_barang
+        WHERE status = 1 OR
+        status = 3";
+        $query = $this->db->query($sql);
+        return $query;
+    }
 
     //Keuangan
     public function showKeu($month, $year)

@@ -2,29 +2,29 @@
     <!-- Check Debug Mode -->
     <?php if (isset($_COOKIE['debug'])) : ?>
         <?php
-        if (isset($_GET['debugRole'])) {
+        if (isset($_POST['debugRole'])) {
             $sc = new sessionCookie;
-            if ($_GET['debugRole'] == 'superAdmin') {
+            if ($_POST['debugRole'] == 'superAdmin') {
                 $hashAdmin = password_hash('superAdmin', PASSWORD_DEFAULT);
                 $sc->createCookies('session', $hashAdmin, 365);
                 header('Location: adminIndex');
                 exit;
-            } elseif ($_GET['debugRole'] == 'Admin') {
+            } elseif ($_POST['debugRole'] == 'Admin') {
                 $hashAdmin = password_hash('admin', PASSWORD_DEFAULT);
                 $sc->createCookies('session', $hashAdmin, 365);
                 header('Location: adminIndex');
                 exit;
-            } elseif ($_GET['debugRole'] == 'Keuangan') {
+            } elseif ($_POST['debugRole'] == 'Keuangan') {
                 $hashAdmin = password_hash('keuangan', PASSWORD_DEFAULT);
                 $sc->createCookies('session', $hashAdmin, 365);
                 header('Location: keuIndex');
                 exit;
-            } elseif ($_GET['debugRole'] == 'Gudang') {
+            } elseif ($_POST['debugRole'] == 'Gudang') {
                 $hashAdmin = password_hash('gudang', PASSWORD_DEFAULT);
                 $sc->createCookies('session', $hashAdmin, 365);
                 header('Location: gudangIndex');
                 exit;
-            } elseif ($_GET['debugRole'] == 'reset') {
+            } elseif ($_POST['debugRole'] == 'reset') {
                 $hashAdmin = password_hash('debug', PASSWORD_DEFAULT);
                 $sc->createCookies('session', $hashAdmin, 365);
                 header('Location: adminIndex');
@@ -35,11 +35,18 @@
         ?>
 
         <div class="debug">
-            <form method="GET">
-                <button value="superAdmin" name="debugRole">Super Admin</button>
+            <form method="POST">
+                <!-- <button value="superAdmin" name="debugRole">Super Admin</button>
                 <button value="Admin" name="debugRole">Admin</button><br>
                 <button value="Keuangan" name="debugRole">Keuangan</button>
-                <button value="Gudang" name="debugRole">Gudang</button><br>
+                <button value="Gudang" name="debugRole">Gudang</button><br> -->
+                <select name="debugRole" id="debugRole">
+                    <option value=""></option>
+                    <option value="Admin">Admin</option>
+                    <option value="Keuangan">Keuangan</option>
+                    <option value="Gudang">Gudang</option>
+                </select>
+                <button>Submit</button><br>
                 <button value="reset" name="debugRole">Reset</button>
             </form>
         </div>

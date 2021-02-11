@@ -175,7 +175,7 @@ class addQuery extends connectDatabase
         $query = $this->db->query($last);
         $fetchLast = mysqli_fetch_assoc($query);
         $convertToString = $fetchLast['id_karyawan'];
-        $lastID = substr($convertToString, 5);
+        $lastID = substr($convertToString, 6);
         //Get Current Year and Month
         $timeStamp = date("Ym");
         //Combine Time and Last ID
@@ -188,7 +188,7 @@ class addQuery extends connectDatabase
         $sql = "INSERT INTO karyawan (id_karyawan, nama_karyawan, email_karyawan, password, rank_karyawan, alamat_karyawan, telp_karyawan) 
         VALUES('$newID', '$nama', '$email', '$hashPassword', '$posisi', '$alamat', '$telp')";
         $this->db->query($sql);
-        header('Location: adminUser');
+        header('Refresh:0');
     }
 
     public function addItem($id, $nama, $harga, $stok)
@@ -211,14 +211,35 @@ class addQuery extends connectDatabase
         VALUES ('$newID', '$stok')";
         $this->db->query($sqlBarang);
         $this->db->query($sqlStok);
-        header('Location: adminStorage');
+        header('Refresh:0');
     }
 
     public function addNotes($notes, $id, $user)
     {
         $sql = "INSERT INTO notes (deskripsi, id_karyawan, nama_karyawan) VALUES('$notes', '$id', '$user')";
         $this->db->query($sql);
-        header('Location: adminIndex');
+        header('Refresh:0');
+    }
+
+    public function addRequest($id, $nama, $qty)
+    {
+        //Fetch Last ID
+        $last = "SELECT id_request FROM request_barang ORDER BY id_request DESC LIMIT 1";
+        $query = $this->db->query($last);
+        $fetchLast = mysqli_fetch_assoc($query);
+        $convertToString = $fetchLast['id_request'];
+        $lastID = substr($convertToString, 6);
+        //Get Current Year and Month
+        $timeStamp = date("Ym");
+        //Combine Time and Last ID
+        $lastID = $timeStamp . $lastID;
+        //New ID
+        $newID = $lastID + 1;
+
+        $sql = "INSERT INTO request_barang (id_request, id_barang, nama_barang, qty_barang, status)
+        VALUES('$newID', '$id', '$nama', '$qty', 0)";
+        $this->db->query($sql);
+        header('Location: gudangRequest');
     }
 }
 
@@ -230,7 +251,7 @@ class editQuery extends connectDatabase
         SET nama_karyawan='$nama', email_karyawan='$email', rank_karyawan='$posisi', alamat_karyawan='$alamat', telp_karyawan='$telp' 
         WHERE id_karyawan='$id'";
         $this->db->query($sql);
-        header('Location: adminUser');
+        header('Refresh:0');
     }
 
     public function editItem($id, $nama, $harga, $stok)
@@ -304,6 +325,28 @@ class extraQuery extends connectDatabase
         $query = $this->db->query($sql);
         $result = mysqli_fetch_assoc($query);
         return $result;
+    }
+    public function confirmRequest($id)
+    {
+        //Get Qty
+        $sqlBarang = "SELECT * FROM request_barang WHERE id_request = '$id'";
+        $getBarang = $this->db->query($sqlBarang);
+        $resultBarang = mysqli_fetch_assoc($getBarang);
+        $qtyBarang = $resultBarang['qty_barang'];
+        $idBarang = $resultBarang['id_barang'];
+
+        //Update Barang
+        $sql = "UPDATE stok_barang
+        SET stok_barang = stok_barang + '$qtyBarang'
+        WHERE id_barang = '$idBarang'";
+        $this->db->query($sql);
+
+        //Update Status
+        $sqlStatus = "UPDATE request_barang
+        SET status = 4
+        WHERE id_request = '$id'";
+        $this->db->query($sqlStatus);
+        header("Refresh:0");
     }
 }
 

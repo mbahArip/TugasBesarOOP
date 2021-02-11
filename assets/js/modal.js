@@ -27,6 +27,7 @@ function openDelete(modalID, buttonID, tableID) {
     modal.style.display = 'flex';
 
     var index = buttonID.parentNode.parentNode.rowIndex;
+    console.log(table.rows[index].cells[0].innerHTML);
     document.getElementById('delete-notesID').value = table.rows[index].cells[0].innerHTML;
 }
 
@@ -115,6 +116,17 @@ function barangReq(modalID, buttonID, tableID) {
     document.getElementById('req-id').value = table.rows[index].cells[0].innerHTML;
     document.getElementById('req-nama').value = table.rows[index].cells[1].innerHTML;
     document.getElementById('req-harga').value = table.rows[index].cells[2].innerHTML;
+}
+function barangConfirm(modalID, buttonID, tableID) {
+    var modalContainer = document.querySelector('.modal');
+    var modal = document.getElementById(modalID);
+    var table = document.getElementById(tableID);
+
+    modalContainer.style.display = 'flex';
+    modal.style.display = 'flex';
+
+    var index = buttonID.parentNode.parentNode.rowIndex;
+    document.getElementById('confirm-reqID').value = table.rows[index].cells[0].innerHTML;
 }
 
 function closeModal(modalID) {

@@ -1372,6 +1372,411 @@ body {
   font-weight: 700;
 }
 
+.storage-dash .grid-wrapper .table-stok {
+  height: 40vh;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1/2;
+}
+
+.storage-dash .grid-wrapper .table-stok .table table {
+  width: calc(95% - 1px);
+  height: 31vh;
+}
+
+.storage-dash .grid-wrapper .table-stok .table table .table-action {
+  text-align: center;
+}
+
+.storage-dash .grid-wrapper .table-stok .table table .table-action button {
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  -webkit-transition: all .1s !important;
+  transition: all .1s !important;
+}
+
+.storage-dash .grid-wrapper .table-stok .table table .table-action button:hover {
+  color: #FDCF56;
+}
+
+.storage-dash .grid-wrapper .table-stok .table table .table-action button i {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.storage-dash .grid-wrapper .table-note {
+  height: 40vh;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1/2;
+}
+
+.storage-dash .grid-wrapper .table-note .notes-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.storage-dash .grid-wrapper .table-note .notes-title .title-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 1rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  -webkit-transition: all 0.1s !important;
+  transition: all 0.1s !important;
+  cursor: pointer;
+}
+
+.storage-dash .grid-wrapper .table-note .notes-title .title-button:hover {
+  color: #1A6AAE;
+}
+
+.storage-dash .grid-wrapper .table-note .notes-title .title-button span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  margin-right: .5rem;
+}
+
+.storage-dash .grid-wrapper .table-note .notes-title .title-button i {
+  font-size: 24px;
+  position: relative;
+  top: .05rem;
+}
+
+.storage-dash .grid-wrapper .table-note .table table {
+  height: 31vh;
+}
+
+.storage-dash .grid-wrapper .table-note .table table .table-action {
+  text-align: center;
+}
+
+.storage-dash .grid-wrapper .table-note .table table .table-action button {
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  -webkit-transition: all .1s !important;
+  transition: all .1s !important;
+}
+
+.storage-dash .grid-wrapper .table-note .table table .table-action button:hover:nth-child(odd) {
+  color: #1A6AAE;
+}
+
+.storage-dash .grid-wrapper .table-note .table table .table-action button:hover:nth-child(even) {
+  color: #D52935;
+}
+
+.storage-dash .grid-wrapper .table-note .table table .table-action button i {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.storage-dash .grid-wrapper .status-req {
+  height: 45vh;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1/3;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2/3;
+}
+
+.storage-dash .grid-wrapper .status-req .table table {
+  height: 35vh;
+}
+
+.storage-dash .grid-wrapper .status-req .table table .table-action {
+  text-align: center;
+}
+
+.storage-dash .grid-wrapper .status-req .table table .table-action button {
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  -webkit-transition: all .1s !important;
+  transition: all .1s !important;
+}
+
+.storage-dash .grid-wrapper .status-req .table table .table-action button:hover:nth-child(odd) {
+  color: #1A6AAE;
+}
+
+.storage-dash .grid-wrapper .status-req .table table .table-action button:hover:nth-child(even) {
+  color: #D52935;
+}
+
+.storage-dash .grid-wrapper .status-req .table table .table-action button i {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.storage-dash .grid-wrapper .req-item {
+  height: 41vh;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1/2;
+}
+
+.storage-dash .grid-wrapper .req-item .notes-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.storage-dash .grid-wrapper .req-item .request-form {
+  margin-top: -1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 1rem;
+}
+
+.storage-dash .grid-wrapper .req-item .request-form form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.storage-dash .grid-wrapper .req-item .request-form form input, .storage-dash .grid-wrapper .req-item .request-form form select {
+  height: 32px;
+  margin: .5rem;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: .5rem;
+  outline: none;
+}
+
+.storage-dash .grid-wrapper .req-item .request-form form input:hover, .storage-dash .grid-wrapper .req-item .request-form form select:hover {
+  border: 1px solid #164C78;
+}
+
+.storage-dash .grid-wrapper .req-item .request-form form input:focus, .storage-dash .grid-wrapper .req-item .request-form form select:focus {
+  border: 1px solid #1A6AAE;
+}
+
+.storage-dash .grid-wrapper .req-item .request-form button {
+  width: calc(100% - 1rem);
+  height: 40px;
+  display: block;
+  margin: .25rem auto;
+  border-radius: .5rem;
+  border: none;
+  outline: none;
+  color: #F7F7FC;
+  cursor: pointer;
+}
+
+.storage-dash .grid-wrapper .req-item .request-form .btn-ok {
+  background-color: #1A6AAE;
+}
+
+.storage-dash .grid-wrapper .req-item .request-form .btn-ok:hover {
+  background-color: #164C78;
+}
+
+.storage-dash .grid-wrapper .req-item .request-form .btn-no {
+  background-color: #D52935;
+}
+
+.storage-dash .grid-wrapper .req-item .request-form .btn-no:hover {
+  background-color: #A1262F;
+}
+
+.storage-dash .grid-wrapper .confirm-item {
+  height: 41vh;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1/2;
+}
+
+.storage-dash .grid-wrapper .confirm-item .confirm-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.storage-dash .grid-wrapper .confirm-item .table table {
+  height: 31vh;
+}
+
+.storage-dash .grid-wrapper .confirm-item .table table .table-action {
+  text-align: center;
+}
+
+.storage-dash .grid-wrapper .confirm-item .table table .table-action button {
+  height: 32px;
+  color: #ffffff;
+  background-color: #1A6AAE;
+  border-radius: 15px;
+  padding: .5rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.storage-dash .grid-wrapper .confirm-item .table table .table-action button:hover {
+  background-color: #164C78;
+  color: #F7F7FC;
+}
+
+.modal #modal-confirmBarang {
+  display: none;
+}
+
+.modal .confirmBarang {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal .confirmBarang span {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 1rem;
+  position: relative;
+  top: -1rem;
+}
+
+.modal .confirmBarang form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.modal .confirmBarang form label {
+  width: 90%;
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.modal .confirmBarang form input {
+  width: 18vw;
+  height: 32px;
+  margin: .25rem;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: .5rem;
+  outline: none;
+  font-size: 16px;
+}
+
+.modal .confirmBarang form input:hover {
+  border: 1px solid #164C78;
+}
+
+.modal .confirmBarang form input:focus {
+  border: 1px solid #1A6AAE;
+}
+
+.modal .confirmBarang form select {
+  width: 18vw;
+  height: 32px;
+  margin: .25rem;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: .5rem;
+  outline: none;
+  font-size: 16px;
+}
+
+.modal .confirmBarang button {
+  width: 18vw;
+  height: 40px;
+  margin: .25rem auto;
+  border-radius: .5rem;
+  border: none;
+  outline: none;
+  color: #F7F7FC;
+  cursor: pointer;
+}
+
+.modal .confirmBarang label {
+  font-size: 20px;
+  margin: 2rem;
+}
+
 .user-setting .grid-wrapper .setting {
   height: auto;
   -ms-grid-column: 1;
