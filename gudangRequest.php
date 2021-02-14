@@ -1,5 +1,5 @@
 <?php
-$pageName = 'Dashboard';
+$pageName = 'Request Barang';
 include 'layout/header.php';
 require 'function/c.php';
 require 'function/function.php';

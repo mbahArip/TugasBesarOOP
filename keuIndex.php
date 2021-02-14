@@ -12,7 +12,13 @@ $condition = password_verify('keuangan', $_COOKIE['session']) == false && passwo
 $sc->_checkRank($condition);
 
 //Show Data
+$dataTransaksi = $vAdmin->newTransaction();
 $dataNotes = $vAdmin->showNotes();
+
+//Chart Data
+$month = date('m');
+$year = date('Y');
+$dataChart = $keuangan->transactionDataToChart($month, $year);
 
 //Get Notes form
 if (isset($_POST['notes'])) {
@@ -29,6 +35,7 @@ if (isset($_POST['delete-notesID'])) {
 ?>
 
 <!-- <script src='assets\js\loading.js'></script> -->
+<script src="assets\js\chart.js"></script>
 
 <body onload="selectedMenu('keuDash')">
     <?php
@@ -38,6 +45,35 @@ if (isset($_POST['delete-notesID'])) {
     <!-- Content -->
     <div class="admin-dash content">
         <div class="grid-wrapper">
+            <!-- Karyawan -->
+            <div class="table-karyawan grid-card">
+                <!-- Employee Title -->
+                <div class="card-info">
+                    <span>Transaksi Baru <i class="material-icons">paid</i></span>
+                </div>
+                <!-- Employee Table -->
+                <div class="table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 15vw !important;">Nomor Transaksi</th>
+                                <th style="width: 25vw !important;">Tanggal Transaksi</th>
+                                <th style="width: 15vw !important;">Pendapatan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($dataTransaksi as $t) : ?>
+                                <tr>
+                                    <td style="text-align: center; "><?= $t['id_transaksi']; ?></td>
+                                    <td style="font-weight: bold; text-align: center;"><?= $t['tanggal_transaksi']; ?></td>
+                                    <td style="text-transform: capitalize; text-align: center;"><?= $t['total_harga']; ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
             <!-- Catatan -->
             <div class="table-note grid-card">
                 <!-- Notes Title -->
@@ -78,6 +114,26 @@ if (isset($_POST['delete-notesID'])) {
                         </tbody>
                     </table>
                 </div>
+            </div>
+
+            <!-- Grafik Penjualan -->
+            <div class="grafik-penjualan grid-card">
+                <!-- Grafik Title -->
+                <div class="card-info">
+                    <span>Pendapatan bulan ini <i class="material-icons">insert_chart</i></span>
+                </div>
+                <!-- Chart -->
+                <div id="adminDashboardChart" class="chartContainer"></div>
+                <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+                <script>
+                    var jsonTest = <?= $dataChart; ?>;
+                    var jsonTanggal = Object.keys(jsonTest);
+                    var jsonPendapatan = []
+                    for (var i = 0; i < jsonTanggal.length; i++) {
+                        jsonPendapatan.push(jsonTest[jsonTanggal[i]]['pemasukan']);
+                    }
+                    adminDash(jsonPendapatan, jsonTanggal, 'adminDashboardChart', 'Pendapatan dalam IDR');
+                </script>
             </div>
 
         </div>

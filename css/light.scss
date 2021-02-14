@@ -1540,6 +1540,82 @@ body {
     }
 }
 
+//Keuangan Request
+.keuangan-dash .grid-wrapper .req-ok {
+    height: 90vh;
+    
+    grid-column: 1/2;
+    grid-row: 1/4;
+
+    & .request-ok-title {
+        display: flex;
+        justify-content: space-between;
+    }
+    & .table table {
+        height: 80vh;
+    }
+    
+    & button {
+        width: auto;
+        height: 32px;
+
+        display: inline;
+
+        margin: auto;
+
+        // color: $col-bg;
+        background-color: transparent;
+        border: none;
+
+        cursor: pointer;
+        transition: all .1s;
+
+        &:hover:nth-child(1){
+            color: #4BB543;
+        }
+        &:hover:nth-child(2){
+            color: #A1262F;
+        }
+    }
+}
+.keuangan-dash .grid-wrapper .req-no {
+    height: 90vh;
+    
+    grid-column: 2/3;
+    grid-row: 1/4;
+
+    & .request-ok-title {
+        display: flex;
+        justify-content: space-between;
+    }
+    & .table table {
+        height: 80vh;
+    }
+    
+    & button {
+        width: auto;
+        height: 32px;
+
+        display: inline;
+
+        margin: auto;
+
+        // color: $col-bg;
+        background-color: transparent;
+        border: none;
+
+        cursor: pointer;
+        transition: all .1s;
+
+        &:hover:nth-child(1){
+            color: #4BB543;
+        }
+        &:hover:nth-child(2){
+            color: #A1262F;
+        }
+    }
+}
+
 //User Settings
 .user-setting .grid-wrapper .setting{
     height: auto;

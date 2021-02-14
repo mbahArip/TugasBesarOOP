@@ -70,6 +70,22 @@ class vAdmin
         $query = $this->db->query($sql);
         return $query;
     }
+    public function showReqKeu()
+    {
+        $sql = "SELECT * FROM request_barang
+        WHERE status = 0
+        ORDER BY id_request DESC";
+        $query = $this->db->query($sql);
+        return $query;
+    }
+    public function showDitolak()
+    {
+        $sql = "SELECT * FROM request_barang
+        WHERE status = 2
+        ORDER BY id_request DESC";
+        $query = $this->db->query($sql);
+        return $query;
+    }
 
     //Keuangan
     public function showKeu($month, $year)
@@ -88,5 +104,20 @@ class vAdmin
         $query = $this->db->query($sql);
         $result = mysqli_fetch_assoc($query);
         return $result;
+    }
+    public function newTransaction()
+    {
+        $sql = "SELECT transaksi.id_transaksi,
+        transaksi.tanggal_transaksi,
+        detail_transaksi.id_karyawan,
+        SUM(detail_transaksi.total_harga) AS total_harga
+        FROM transaksi
+        INNER JOIN detail_transaksi
+        WHERE transaksi.id_transaksi = detail_transaksi.id_transaksi
+        GROUP BY transaksi.id_transaksi
+        ORDER BY transaksi.id_transaksi DESC
+        LIMIT 7";
+        $query = $this->db->query($sql);
+        return $query;
     }
 }
