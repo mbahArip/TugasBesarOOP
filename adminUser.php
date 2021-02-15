@@ -19,7 +19,7 @@ $totalPage = ceil($totalData / $dataPerPage);
 
 //Search Query
 if (isset($_POST['searchQuery'])) {
-    $dataEmployee = $search->userSearch($_POST['searchQuery']);
+    $page = $search->userSearch($_POST['searchQuery']);
 }
 //Add Query
 if (isset($_POST['addUser'])) {
