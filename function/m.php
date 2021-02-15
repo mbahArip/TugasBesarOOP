@@ -14,7 +14,7 @@ class database
         $db_server = 'localhost';
         $db_user = 'root';
         $db_pass = '';
-        $db_name = 'tugasbesar_19552011111';
+        $db_name = 'cpanel_indomaret_19552011111';
         global $con;
 
         $con = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
