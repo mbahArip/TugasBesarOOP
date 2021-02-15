@@ -1,5 +1,6 @@
 <?php
 //SessionCookie
+$db = new database();
 $sc = new sessionCookie();
 $vAdmin = new vAdmin();
 
@@ -11,3 +12,4 @@ $extra = new extraQuery();
 
 $keuangan = new keuangan();
 $settings = new userSettings();
+$pagination = new pagination();

@@ -25,8 +25,12 @@ if (isset($_POST['login'])) {
 
 //Generator
 if (isset($_POST['string'])) {
-    $hash = password_hash($_POST['string'], PASSWORD_DEFAULT);
-    echo $hash;
+    // $hash = password_hash($_POST['string'], PASSWORD_DEFAULT);
+    // echo $hash;
+    for ($i = 0; $i < 10; $i++) {
+        // $hash = password_hash($_POST['string'], PASSWORD_DEFAULT);
+        // echo $hash . "<br>";
+    }
 }
 
 ?>
@@ -43,7 +47,7 @@ if (isset($_POST['string'])) {
         <form name="login" class="login" method="POST">
             <span>ID Karyawan</span>
             <br>
-            <input type="text" name="loginUser" id="loginUser" placeholder="8 Digit ID Karyawan" autocomplete="off" required="required" maxlength="8">
+            <input type="text" name="loginUser" id="loginUser" placeholder="ID Karyawan" autocomplete="off" required="required" maxlength="10">
             <br>
             <span>Password</span>
             <br>

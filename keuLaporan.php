@@ -20,6 +20,7 @@ if (isset($_POST['range'])) {
 } else {
     $month = date('m');
     $year = date('Y');
+    $gajiTime = 'last day of ' . date("F", mktime(0, 0, 0, $month, 10));
 }
 $json = $keuangan->transactionDataToChart($month, $year);
 $lapKeu = $vAdmin->showKeu($month, $year);

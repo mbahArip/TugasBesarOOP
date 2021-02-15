@@ -1807,6 +1807,7 @@ body {
   margin: auto;
   background-color: transparent;
   border: none;
+  outline: none;
   cursor: pointer;
   -webkit-transition: all .1s;
   transition: all .1s;
@@ -1850,6 +1851,7 @@ body {
   margin: auto;
   background-color: transparent;
   border: none;
+  outline: none;
   cursor: pointer;
   -webkit-transition: all .1s;
   transition: all .1s;
@@ -1861,6 +1863,87 @@ body {
 
 .keuangan-dash .grid-wrapper .req-no button:hover:nth-child(2) {
   color: #A1262F;
+}
+
+.modal #modal-approveRequest {
+  display: none;
+}
+
+.modal #modal-denyRequest {
+  display: none;
+}
+
+.modal #modal-approveRight {
+  display: none;
+}
+
+.modal #modal-deleteRequest {
+  display: none;
+}
+
+.modal .denyRequest, .modal .approveRight {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal .denyRequest span, .modal .approveRight span {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.modal .denyRequest form, .modal .approveRight form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal .denyRequest form textarea, .modal .approveRight form textarea {
+  width: 25vw;
+  height: 15vh;
+  margin: 1rem auto;
+  padding: .5rem;
+  border: .5px solid black;
+  border-radius: .5rem;
+  outline: none;
+  resize: none;
+}
+
+.modal .denyRequest form textarea:hover, .modal .approveRight form textarea:hover {
+  border: 0.5px solid #164C78;
+}
+
+.modal .denyRequest form textarea:focus, .modal .approveRight form textarea:focus {
+  border: 0.5px solid #1A6AAE;
+}
+
+.modal .denyRequest button, .modal .approveRight button {
+  width: 18vw;
+  height: 40px;
+  margin: .25rem auto;
+  border-radius: .5rem;
+  border: none;
+  outline: none;
+  color: #F7F7FC;
+  cursor: pointer;
+}
+
+.modal .denyRequest label, .modal .approveRight label {
+  font-size: 20px;
+  margin: 2rem;
 }
 
 .user-setting .grid-wrapper .setting {
@@ -2006,5 +2089,19 @@ body {
 .user-setting .grid-wrapper .setting .btn-upload {
   width: 10vw;
   margin: auto 2rem auto auto;
+}
+
+.pagination {
+  text-align: center;
+  margin: 1rem;
+}
+
+.pagination a {
+  text-decoration: none;
+  color: #25292C;
+}
+
+.pagination .page-active {
+  font-weight: bold;
 }
 /*# sourceMappingURL=light.css.map */

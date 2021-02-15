@@ -1566,6 +1566,7 @@ body {
         // color: $col-bg;
         background-color: transparent;
         border: none;
+        outline: none;
 
         cursor: pointer;
         transition: all .1s;
@@ -1603,6 +1604,7 @@ body {
         // color: $col-bg;
         background-color: transparent;
         border: none;
+        outline: none;
 
         cursor: pointer;
         transition: all .1s;
@@ -1613,6 +1615,73 @@ body {
         &:hover:nth-child(2){
             color: #A1262F;
         }
+    }
+}
+.modal {
+    & #modal-approveRequest {
+        display: none;
+    }
+    & #modal-denyRequest {
+        display: none;
+    }
+    & #modal-approveRight {
+        display: none;
+    }
+    & #modal-deleteRequest {
+        display: none;
+    }
+}
+.modal .denyRequest, .modal .approveRight {
+    justify-content: center;
+    align-items: center;
+
+    & span {
+        font-size: 24px;
+        font-weight: 800;
+    }
+    & form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        & textarea {
+            width: 25vw;
+            height: 15vh;
+
+            margin: 1rem auto;
+            padding: .5rem;
+            border: .5px solid black;
+            border-radius: .5rem;
+            outline: none;
+            resize: none;
+
+            &:hover {
+                border: .5px solid $col-var-2;
+            }
+            &:focus {
+                border: .5px solid $col-2;
+            }
+        }
+    }
+    & button {
+        width: 18vw;
+        height: 40px;
+
+        margin: .25rem auto;
+        border-radius: .5rem;
+        border: none;
+        outline: none;
+
+        color: $col-bg;
+
+        cursor: pointer;
+    }
+}
+.modal .denyRequest, .modal .approveRight {
+    & label {
+        font-size: 20px;
+        margin: 2rem;
     }
 }
 
@@ -1747,5 +1816,18 @@ body {
     & .btn-upload {
         width: 10vw;
         margin: auto 2rem auto auto;
+    }
+}
+
+.pagination {
+    text-align: center;
+    margin: 1rem;
+
+    & a {
+        text-decoration: none;
+        color: $col-text;
+    }
+    & .page-active {
+        font-weight: bold;
     }
 }

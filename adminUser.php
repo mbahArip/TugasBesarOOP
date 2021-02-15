@@ -11,6 +11,11 @@ $condition = password_verify('admin', $_COOKIE['session']) == false && password_
 $sc->_checkRank($condition);
 
 $dataEmployee = $vAdmin->showEmployee();
+$activePage;
+$dataPerPage;
+$page = $pagination->paginationKaryawan();
+$totalData = mysqli_num_rows($db->query("SELECT * FROM karyawan"));
+$totalPage = ceil($totalData / $dataPerPage);
 
 //Search Query
 if (isset($_POST['searchQuery'])) {
@@ -73,7 +78,7 @@ if (isset($_POST['salaryUser'])) {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($dataEmployee as $e) : ?>
+                            <?php foreach ($page as $e) : ?>
                                 <tr>
                                     <td style="text-align: center;"><?= $e['id_karyawan']; ?></td>
                                     <td><?= $e['nama_karyawan']; ?></td>
@@ -91,6 +96,38 @@ if (isset($_POST['salaryUser'])) {
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <!-- First Page -->
+                    <?php if ($activePage > 1) : ?>
+                        <a href="?p=1" class="page">First Page</a>
+                    <?php endif; ?>
+
+                    <!-- Prev Page -->
+                    <?php if ($activePage > 1) : ?>
+                        <a href="?p=<?php echo $activePage - 1; ?>" class="page">&lt;</a>
+                    <?php endif; ?>
+
+                    <!-- Pages -->
+                    <?php for ($i = 1; $i <= $totalPage; $i++) : ?>
+                        <?php if ($i == $activePage) : ?>
+                            <a href="?p=<?php echo $i; ?>" class="page-active"><?php echo $i; ?></a>
+                        <?php else : ?>
+                            <a href="?p=<?php echo $i; ?>" class="page"><?php echo $i; ?></a>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+
+                    <!-- Next Page -->
+                    <?php if ($activePage < $totalPage) : ?>
+                        <a href="?p=<?php echo $activePage + 1; ?>" class="page">&gt;</a>
+                    <?php endif; ?>
+
+                    <!-- Last Page -->
+                    <?php if ($activePage < $totalPage) : ?>
+                        <a href="?p=<?php echo $totalPage; ?>" class="page">Last Page</a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

@@ -1,0 +1,21 @@
+id_karyawan,nama_karyawan,email_karyawan,password,rank_karyawan,alamat_karyawan,telp_karyawan,gaji_karyawan,avatar_karyawan
+2003260001,Arief Rachmawan,dev@mbaharip.me,$2y$10$OIjmb4xyPMGglyzzW3vY3.mg670uEGUuXsKbdbiTJ6em0oRIf6/Va,debug,Bandung,08671225371,7000000,default.png
+2003260002,Gilda Mayasari,gildamayasari@gmail.com,$2y$10$Zb4YmwnewCqZre1JER351.b1FAbuLmCdBEZgLKJ.RUfI8Djg5.UC2,admin,Bandung,08598131980,8000000,default.png
+2003260003,Jono Nasim Siregar,jonooosiregar21@gmail.com,$2y$10$b6YhUkL9/thF5N.b8ooBL.HwzKB8ZfLOb7Su8CTtaTaPTnK2p1QcW,admin,Cimahi,08912989537,8000000,default.png
+2003270004,Gasti Mulyani,gst.mulyani@gmail.com,$2y$10$bpXWLhOV8mHrbupxo1EEJeaj2XWbeNn/BHhiHX2Z8YJdlCX3p2q1O,admin,Bandung,08131124857,8000000,default.png
+2003270005,Mahfud Hasan Prasetyo,mahfud20@gmail.com,$2y$10$4H.ipvTm34HI9OdgC/uaPeF6frb41yILYKQe1gWgJ80KVCJEE2y7O,gudang,Cimahi,08347000071,5000000,default.png
+2004020006,Ani Tami Yuniar,tamitamiyuniar99@gmail.com,$2y$10$wfJ54KtaBAaxte0qwVeDBOTDqvgaii8oexqjISkgKxDK0Z303I9XS,keuangan,Cimahi,08747281123,6000000,default.png
+2004020007,Cengkir Prasetya,prasetya66@gmail.com,$2y$10$e70Nl7RM.IIXG1gL5c8D9u2S0vg2SPmsEgsuKt7ZAWEl2.SL7TGJG,keuangan,Bandung,08987610303,6000000,default.png
+2004020008,Kani Yulianti,yulikanianti@gmail.com,$2y$10$btvf4hTHro8/OzZdn4iPxO2eMaLEl7NM62T4fnLrZ0HjJGCv7w46S,keuangan,Bandung,08987803266,5000000,default.png
+2004020009,Fadhilah Prakarsa,fadhil.karsa@gmail.com,$2y$10$AV./QYdsTvl2M/YU9B4blOo6yrGwPI0ZdrEYEVcYTcxXj9OemNmQy,kasir,Bandung,08843175176,2000000,default.png
+2004020010,Olivia Melani,oliv.melani41@gmail.com,$2y$10$jneQ.XqXEWjLwdTk5jp6AOTPUssT5IdcVQBKgcQ7f5Fvn7sd5wSKG,kasir,Bandung,08737410547,2000000,default.png
+2004270011,Zaenab Nasyidah,baneaz00@gmail.com,$2y$10$9fQOOGvhuLY4pkaVlB/p1eC8AiERlLBcLUNnf422YRmzSOiwmjvMG,gudang,Bandung,08519867508,6000000,default.png
+2004270012,Prima Januar,prima.jaguar@gmail.com,$2y$10$4ifZoF4q9PRUZAXFU8v2Seh5M/GpC7HBprqJOtOTJmW6xPM2yqln2,gudang,Bandung,08651249396,6000000,default.png
+2005030013,Eko Damar,damareko54@gmail.com,$2y$10$Tjjy1yaKWV0LekFWviZJYuIRZxHPsRsOvQTBjPa0RVZi2qoENqiIG,keuangan,Cimahi,08763695423,5000000,default.png
+2005030014,Rizki Hutapea,rizki.hutapea68@gmail.com,$2y$10$cVpkboI1aYFPyYybu9jn0e3QQJPwRjO.B.35i569se29qUVlVG.xK,keuangan,Cimahi,08157526397,6000000,default.png
+2005030015,Arta Prakasa,artaarta.prakarsa1998@gmail.com,$2y$10$.TT6nW/JNJLUHsNjoCcbj.6fqHbSBHLXgVLcki0oVt.eSs.Dp5SsC,kasir,Cimahi,08332782263,2000000,default.png
+2005260016,Safina Lailasari,laila.safina2000@gmail.com,$2y$10$WoZIYpJ7L9i6NuxqRswbb.meTS0nYBHr0yLeXsTt3DkVhFMJ1uO86,kasir,Bandung,08797064620,2000000,default.png
+2005260017,Ade Suwarno,suwarno.ade@gmail.com,$2y$10$5UUbijZA43yjtnAJQ2cBieEsUOb4wuP5T1aPPBoiTDntXEhqtr34W,gudang,Cimahi,08787865914,5000000,default.png
+2006020018,Laila Gasti,gastilaila@gmail.com,$2y$10$qz5BrqFNJ.cii74R0L.kAuKe3x5LWfdazn4Px9jAkMsn977dYkXcO,gudang,Bandung,08596670747,5000000,default.png
+2006020019,Siska Wulandari,siskawww@gmail.com,$2y$10$zVXuCm9aHSjHKo8h0oV1pOq/D54z.VUdHa0QvovDsRh/6kjS7P.46,keuangan,Bandung,08469842769,6000000,default.png
+2006020020,Salman Harsaya,salman.harsaya77@gmail.com,$2y$10$HjtDZGoAodVvRJYu.PAGCe0jLYEuMqXAEMT.HrsmiHFo7CqGV8YYu,kasir,Bandung,08969057549,2000000,default.png

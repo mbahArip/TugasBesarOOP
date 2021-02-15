@@ -15,11 +15,25 @@ $sc->_checkRank($condition);
 $dataRequest = $vAdmin->showReqKeu();
 $dataDitolak = $vAdmin->showDitolak();
 
+//Function
+if (isset($_POST['approveRequest'])) {
+    if (isset($_POST['deskripsi'])) {
+        $keuangan->requestApprove($_POST['req-id'], $_POST['deskripsi']);
+    } else {
+        $keuangan->requestApprove($_POST['req-id']);
+    }
+}
+if (isset($_POST['denyRequest'])) {
+    $keuangan->requestDeny($_POST['req-id'], $_POST['deskripsi']);
+}
+if (isset($_POST['deleteRequest'])) {
+    $keuangan->requestDelete($_POST['req-id']);
+}
 ?>
 
 <!-- <script src='assets\js\loading.js'></script> -->
 
-<body onload="selectedMenu('gudangReq')">
+<body onload="selectedMenu('keuReq')">
     <?php
     include 'layout/sidebar.php';
     ?>
@@ -30,7 +44,7 @@ $dataDitolak = $vAdmin->showDitolak();
             <!-- Request Approval -->
             <div class="req-ok grid-card">
                 <div class="card-info request-ok-title">
-                    <span>Request Barang <i class="material-icons"> error </i></span>
+                    <span>Request Barang <i class="material-icons"> inventory_2 </i></span>
                 </div>
 
                 <div class="table">
@@ -38,7 +52,7 @@ $dataDitolak = $vAdmin->showDitolak();
                         <thead>
                             <tr>
                                 <th style="width: 15vw !important">Nomor Request</th>
-                                <th style="width: 10vw !important">ID Barang</th>
+                                <th style="width: 10vw !important">Qty Barang</th>
                                 <th style="width: 55vw !important">Nama Barang</th>
                                 <th style="width: 15vw !important">Actions</th>
                             </tr>
@@ -47,13 +61,12 @@ $dataDitolak = $vAdmin->showDitolak();
                             <?php foreach ($dataRequest as $r) : ?>
                                 <tr>
                                     <td style="text-align: center;"><?= $r['id_request'] ?></td>
-                                    <td style="text-align: center;"><?= $r['id_barang'] ?></td>
+                                    <!-- <td style="text-align: center;"><?= $r['id_barang'] ?></td> -->
+                                    <td style="text-align: center;"><?= $r['qty_barang'] ?></td>
                                     <td><?= $r['nama_barang'] ?></td>
                                     <td style="text-align: center;">
-                                        <form method="post">
-                                            <button><i class="material-icons">check</i></button>
-                                            <button><i class="material-icons">cancel</i></button>
-                                        </form>
+                                        <button onclick="reqApprove('modal-approveRequest', this, 'table-req-ok', 'req-id')"><i class="material-icons">check</i></button>
+                                        <button onclick="reqApprove('modal-denyRequest', this, 'table-req-ok', 'req-deny-id')"><i class="material-icons">cancel</i></button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -73,7 +86,7 @@ $dataDitolak = $vAdmin->showDitolak();
                         <thead>
                             <tr>
                                 <th style="width: 15vw !important">Nomor Request</th>
-                                <th style="width: 10vw !important">ID Barang</th>
+                                <th style="width: 10vw !important">Qty Barang</th>
                                 <th style="width: 35vw !important">Nama Barang</th>
                                 <th style="width: 35vw !important">Alasan</th>
                                 <th style="width: 10vw !important">Actions</th>
@@ -83,14 +96,13 @@ $dataDitolak = $vAdmin->showDitolak();
                             <?php foreach ($dataDitolak as $r) : ?>
                                 <tr>
                                     <td style="text-align: center;"><?= $r['id_request'] ?></td>
-                                    <td style="text-align: center;"><?= $r['id_barang'] ?></td>
+                                    <!-- <td style="text-align: center;"><?= $r['id_barang'] ?></td> -->
+                                    <td style="text-align: center;"><?= $r['qty_barang'] ?></td>
                                     <td><?= $r['nama_barang'] ?></td>
                                     <td><?= $r['deskripsi'] ?></td>
                                     <td style="text-align: center;">
-                                        <form method="post">
-                                            <button><i class="material-icons">check</i></button>
-                                            <button><i class="material-icons">delete</i></button>
-                                        </form>
+                                        <button onclick="reqApprove('modal-approveRight', this, 'table-req-no', 'req-right-id')"><i class=" material-icons">check</i></button>
+                                        <button onclick="reqApprove('modal-deleteRequest', this, 'table-req-no', 'req-delete-id')"><i class="material-icons">delete</i></button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -104,32 +116,55 @@ $dataDitolak = $vAdmin->showDitolak();
     <!-- Modal -->
     <script src="assets\js\modal.js"></script>
     <div class="modal">
-        <!-- Dialog Delete Notes -->
-        <div id="modal-confirmBarang" class="confirmBarang modal-container">
-            <span for="notes">Konfirmasi Barang</span>
-            <form name="confirm-barang" method="POST">
-                <input type="hidden" name="confirm-reqID" id="confirm-reqID">
-                <label>Pastikan barang yang diterima telah sesuai!</label>
-                <button class="btn-ok">Konfirmasi</button>
+        <!-- Dialog Approve -->
+        <div id="modal-approveRequest" class="confirmBarang modal-container">
+            <span for="notes">Approval Request</span>
+            <form name="approveRequest" method="POST">
+                <input type="hidden" name="req-id" id="req-id">
+                <label>Setujui request barang?</label>
+                <button class="btn-ok" name="approveRequest">Setujui</button>
             </form>
-            <button class="btn-no" onclick="closeModal('modal-confirmBarang')">Batalkan</button>
+            <button class="btn-no" onclick="closeModal('modal-approveRequest')">Batalkan</button>
+        </div>
+
+        <!-- Dialog Deny -->
+        <div id="modal-denyRequest" class="denyRequest modal-container">
+            <span for="notes">Approval Request</span>
+            <form name="denyRequest" method="POST">
+                <input type="hidden" name="req-id" id="req-deny-id">
+                <label>Alasan menolak request?</label>
+                <textarea type="text" name="deskripsi" id="deskripsi" placeholder="Maximal 500 karakter" maxlength="500" required="required"></textarea>
+                <button class="btn-no" name="denyRequest">Tolak</button>
+            </form>
+            <button class="btn-ok" onclick="closeModal('modal-denyRequest')">Batalkan</button>
+        </div>
+
+        <!-- Dialog Approve -->
+        <div id="modal-deleteRequest" class="confirmBarang modal-container">
+            <span for="notes">Hapus Request</span>
+            <form name="approveRight" method="POST">
+                <input type="hidden" name="req-id" id="req-delete-id">
+                <label>Hapus request barang?</label>
+                <button class="btn-no" name="deleteRequest">Hapus</button>
+            </form>
+            <button class="btn-ok" onclick="closeModal('modal-deleteRequest')">Batalkan</button>
+        </div>
+
+        <!-- Dialog Deny -->
+        <div id="modal-approveRight" class="approveRight modal-container">
+            <span for="notes">Approval Request</span>
+            <form name="deleteRequest" method="POST">
+                <input type="hidden" name="req-id" id="req-right-id">
+                <label>Alasan mengubah status?</label>
+                <textarea type="text" name="deskripsi" id="deskripsi" placeholder="Maximal 500 karakter" maxlength="500" required="required"></textarea>
+                <button class="btn-ok" name="approveRequest">Setujui</button>
+            </form>
+            <button class="btn-no" onclick="closeModal('modal-approveRight')">Batalkan</button>
         </div>
     </div>
 </body>
 
 <script>
-    <?php if (isset($_POST['requestStok'])) : ?>
-        const idBarang = document.getElementById('req-id');
-        const namaBarang = document.getElementById('req-nama');
-
-        idBarang.value = '<?= $_POST['id_barang']; ?>';
-        namaBarang.value = '<?= $_POST['nama_barang']; ?>';
-    <?php endif; ?>
-
-    function resetQty() {
-        const qtyBarang = document.getElementById('req-qty');
-        qtyBarang.value = '';
-    }
 </script>
 
 <?php

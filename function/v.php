@@ -121,3 +121,45 @@ class vAdmin
         return $query;
     }
 }
+
+class pagination
+{
+    protected $db = null;
+
+    public function __construct()
+    {
+        return $this->db = new database();
+    }
+    public function set($owo, $value)
+    {
+        $owo == $value;
+    }
+
+    public function paginationBarang()
+    {
+        global $dataPerPage;
+        $dataPerPage = 15;
+        global $activePage;
+        $activePage = (isset($_GET['p'])) ? $_GET['p'] : 1;
+        $limitStart = ($dataPerPage * $activePage) - $dataPerPage;
+
+        $sql = "SELECT barang.id_barang, barang.nama_barang, barang.harga_barang, stok_barang.stok_barang
+        FROM barang INNER JOIN stok_barang ON barang.id_barang = stok_barang.id_barang
+        LIMIT $limitStart, $dataPerPage";
+        $query = $this->db->query($sql);
+        return $query;
+    }
+
+    public function paginationKaryawan()
+    {
+        global $dataPerPage;
+        $dataPerPage = 15;
+        global $activePage;
+        $activePage = (isset($_GET['p'])) ? $_GET['p'] : 1;
+        $limitStart = ($dataPerPage * $activePage) - $dataPerPage;
+
+        $sql = "SELECT * FROM karyawan LIMIT $limitStart, $dataPerPage";
+        $query = $this->db->query($sql);
+        return $query;
+    }
+}

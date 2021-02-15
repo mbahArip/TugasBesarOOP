@@ -10,7 +10,11 @@ $sc->_checkSession('login');
 $condition = password_verify('gudang', $_COOKIE['session']) == false && password_verify('debug', $_COOKIE['session']) == false;
 $sc->_checkRank($condition);
 
-$dataBarang = $vAdmin->showStorage();
+$activePage;
+$dataPerPage;
+$page = $pagination->paginationBarang();
+$totalData = mysqli_num_rows($db->query("SELECT * FROM barang"));
+$totalPage = ceil($totalData / $dataPerPage);
 
 if (isset($_POST['searchQuery'])) {
     $dataBarang = $search->itemSeach($_POST['searchQuery']);
@@ -65,7 +69,7 @@ if (isset($_POST['requestBarang'])) {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($dataBarang as $b) : ?>
+                            <?php foreach ($page as $b) : ?>
                                 <tr>
                                     <td><?= $b['id_barang']; ?></td>
                                     <td><?= $b['nama_barang']; ?></td>
@@ -92,6 +96,38 @@ if (isset($_POST['requestBarang'])) {
                         </tbody>
                     </table>
                 </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <!-- First Page -->
+                    <?php if ($activePage > 1) : ?>
+                        <a href="?p=1" class="page">First Page</a>
+                    <?php endif; ?>
+
+                    <!-- Prev Page -->
+                    <?php if ($activePage > 1) : ?>
+                        <a href="?p=<?php echo $activePage - 1; ?>" class="page">&lt;</a>
+                    <?php endif; ?>
+
+                    <!-- Pages -->
+                    <?php for ($i = 1; $i <= $totalPage; $i++) : ?>
+                        <?php if ($i == $activePage) : ?>
+                            <a href="?p=<?php echo $i; ?>" class="page-active"><?php echo $i; ?></a>
+                        <?php else : ?>
+                            <a href="?p=<?php echo $i; ?>" class="page"><?php echo $i; ?></a>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+
+                    <!-- Next Page -->
+                    <?php if ($activePage < $totalPage) : ?>
+                        <a href="?p=<?php echo $activePage + 1; ?>" class="page">&gt;</a>
+                    <?php endif; ?>
+
+                    <!-- Last Page -->
+                    <?php if ($activePage < $totalPage) : ?>
+                        <a href="?p=<?php echo $totalPage; ?>" class="page">Last Page</a>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>
@@ -108,7 +144,7 @@ if (isset($_POST['requestBarang'])) {
                     <option value="D">Minuman</option>
                     <option value="F">Makanan</option>
                     <option value="G">Kebutuhan Rumah Tangga</option>
-                    <option value="DIGI">Produk Digital</option>
+                    <option value="V">Produk Digital</option>
                 </select>
 
                 <label for="nama-barang">Nama Barang: </label>

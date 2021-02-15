@@ -378,6 +378,7 @@ class keuangan extends connectDatabase
         }
 
         //Create Array
+        global $output;
         $output = array();
         foreach ($data as $d) {
             $date = date("d-F-Y", strtotime($d['tanggal_transaksi']));
@@ -386,6 +387,32 @@ class keuangan extends connectDatabase
         //Encode to JSON
         $json = json_encode($output, JSON_PRETTY_PRINT);
         return $json;
+    }
+    public function insertToLapKeu($json)
+    {
+    }
+    public function requestApprove($id, $deskripsi = 'Approve')
+    {
+        $sql = "UPDATE request_barang
+        SET status = 1, deskripsi = '$deskripsi'
+        WHERE id_request = $id";
+        $this->db->query($sql);
+        header('Location: keuRequest');
+    }
+    public function requestDeny($id, $deskripsi)
+    {
+        $sql = "UPDATE request_barang
+        SET status = 2, deskripsi = '$deskripsi'
+        WHERE id_request = $id";
+        $this->db->query($sql);
+        header('Location: keuRequest');
+    }
+    public function requestDelete($id)
+    {
+        $sql = "DELETE FROM request_barang
+        WHERE id_request = $id";
+        $this->db->query($sql);
+        header('Location: keuRequest');
     }
 }
 
@@ -438,6 +465,5 @@ class userSettings extends connectDatabase
         }
     }
 }
-
 
 require('v.php');

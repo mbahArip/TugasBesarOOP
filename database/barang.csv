@@ -1,0 +1,119 @@
+id_barang,nama_barang,harga_barang
+F-0001,Leo Kripik Kentang Rumput Laut,1500
+F-0002,Leo Kripik Kentang Sapi Panggang,1500
+F-0003,Leo Kripik Kentang Ayam Original,1500
+F-0004,Leanet Beef BBQ,1000
+F-0005,Leanet Seaweed,1000
+F-0006,Piattoz Sapi Panggang,1500
+F-0007,Piattoz Barbeque,1500
+F-0008,Happytos Tortilla Chips,12000
+F-0009,Happytos Corn Chips,12000
+F-0010,Doritos Barbeque,10000
+F-0011,Doritos Nacho Cheese,10000
+F-0012,Richeese Nabati,1500
+F-0013,Good Time,2500
+F-0014,Togo Coklat,2000
+F-0015,Top Strawberry,2000
+F-0016,Top Caramel,2000
+F-0017,Tango Wafer Susu Vanilla,5000
+F-0018,Better Susu Vanilla,2000
+F-0019,Beng-beng Karamel,2000
+F-0020,Beng-beng Hazelnut,2000
+F-0021,Indomie Ayam Bawang,1500
+F-0022,Indomie Kari Ayam,2000
+F-0023,Indomie Soto Mie,2000
+F-0024,Indomie Soto Spesial,2500
+F-0025,Indomie Empal Gentong,2000
+F-0026,Indomie Mie Goreng,2000
+F-0027,Indomie Cabe Ijo,3000
+F-0028,Indomie Iga Penyet,3000
+F-0029,Indomie Rendang,3000
+F-0030,Indomie Hype Abis - Ayam Geprek,5000
+D-0001,Sprite 200ml,5000
+D-0002,Sprite 425ml,10000
+D-0003,Fanta Merah 200ml,5000
+D-0004,Fanta Merah 425ml,10000
+D-0005,Coca-cola 200ml,5000
+D-0006,Pulpy Orange,7000
+D-0007,Happy jus,3000
+D-0008,Fruit tea Apple,5000
+D-0009,Fruit tea Blackcurant,5000
+D-0010,Clevo Strawberry,3000
+D-0011,Clevo Chocolate,3000
+D-0012,Calpino Anggur,2000
+D-0013,Calpino Original,2000
+D-0014,Teh Gelas,1500
+D-0015,Teh Eco 240ml,2500
+D-0016,ABC Kacang hijau,2000
+D-0017,Teh Rio,3000
+D-0018,Milkuat,5000
+D-0019,Pocari sweat,10000
+D-0020,Larutan Penyegar Sinde,5000
+D-0021,Aqua 600ml,3000
+D-0022,Club 600ml,2500
+D-0023,You C1000 Apple,10000
+D-0024,You C1000 Orange,10000
+D-0025,Floridina Orange,3000
+D-0026,Ades 600ml,3000
+D-0027,Marjan Boudoin Melon,15000
+D-0028,Pediasure Coklat,175000
+D-0029,Pediasure Madu,175000
+D-0030,Enfapgrow A+,125000
+D-0031,Enfapgrow A+ Madu,200000
+D-0032,Enfakid A+ Madu,150000
+D-0033,Kapal Api Kopi Susu,12000
+D-0034,Torabika Full Cream,12000
+D-0035,Sido Muncul Kopi Jahe,10000
+D-0036,Kuku Bima Kopi Gingseng,15000
+D-0037,Energen Vanilla,10000
+D-0038,Energen Coklat,12000
+D-0039,Indomilk Putih,8000
+D-0040,Indomilk Coklat,10000
+D-0041,Sari Wangi,20000
+G-0001,Pantene Anti Dandruf,22000
+G-0002,Pantene Nature Care,20000
+G-0003,Rejoice Anti Frizz,15000
+G-0004,Rejoice Anti Dandruf,17000
+G-0005,Emeron,15000
+G-0006,Head & Shoulder,14000
+G-0007,Sunsilk Hairfall,20000
+G-0008,Lifebuoy Anti Dandruff 90ml,8000
+G-0009,Lifebuoy Anti Dandruff 10ml,1000
+G-0010,Clear Men Ice Cool,13000
+G-0011,Clear Ice Cool Menthol,15000
+G-0012,Give Pepaya,2500
+G-0013,Give Bengkoang,2500
+G-0014,Lifebuoy Cool Fresh Menthol,3000
+G-0015,Lifebuoy Total,3000
+G-0016,Lux Velvet Touch,10000
+G-0017,Lux White Glamour,10000
+G-0018,Nuvo Cool,2500
+G-0019,Nuvo Caring,2500
+G-0020,Nuvo Energizing,2500
+G-0021,Wardah Moisturizer Gel,15000
+G-0022,Rexona Teens,5000
+G-0023,Rexona Floral,8000
+G-0024,Pixy Woody,4000
+G-0025,Pepsodent,3000
+G-0026,Sunlight Jeruk Nipis 90ml,1500
+G-0027,Sunlight Jeruk Nipis 200ml,3000
+G-0028,Vixal Lebih Wangi 500ml,7000
+G-0029,Vixal Lebih Wangi 800ml,15000
+G-0030,Citra Bengkoang,13000
+G-0031,Citra Teh Hijau,3000
+G-0032,Citra Beras Jepang,10000
+G-0033,Citra Mangir Jawa,5000
+G-0034,Lovely Caring Glow,4000
+G-0035,Pond's White Beauty,8000
+G-0036,Pond's Perfect Matte,13000
+G-0037,Wardah Facial Wash,10000
+V-0001,Google Play Card IDR 20000,22000
+V-0002,Google Play Card IDR 50000,55000
+V-0003,Google Play Card IDR 100000,105000
+V-0004,Google Play Card IDR 300000,315000
+V-0005,Google Play Card IDR 500000,525000
+V-0006,UniPin IDR 10000,12000
+V-0007,UniPin IDR 20000,24000
+V-0008,UniPin IDR 50000,55000
+V-0009,UniPin IDR 100000,110000
+V-0010,UniPin IDR 300000,325000

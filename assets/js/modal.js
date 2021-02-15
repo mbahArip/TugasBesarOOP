@@ -129,6 +129,20 @@ function barangConfirm(modalID, buttonID, tableID) {
     document.getElementById('confirm-reqID').value = table.rows[index].cells[0].innerHTML;
 }
 
+function reqApprove(modalID, buttonID, tableID, inputID) {
+    var modalContainer = document.querySelector('.modal');
+    var modal = document.getElementById(modalID);
+    var table = document.getElementById(tableID);
+    var inputID = document.getElementById(inputID);
+
+    modalContainer.style.display = 'flex';
+    modal.style.display = 'flex';
+
+    var index = buttonID.parentNode.parentNode.rowIndex;
+    inputID.value = table.rows[index].cells[0].innerHTML;
+    console.log(table.rows[index].cells[0].innerHTML)
+}
+
 function closeModal(modalID) {
     var modal = document.getElementById(modalID);
     var modalContainer = document.querySelector('.modal');
